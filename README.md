@@ -18,7 +18,27 @@
 ### 1) Introduction 장지호
 
 
-### 2) Streaming Logic 조하영 이규민
+### 2) Code Tree 장지호
+    ├─ app // Final output. Don't edit this folder.
+    │  ├─ css
+    │  ├─ img
+    │  ├─ js
+    │  └─ index.html
+    │
+    ├─ dev
+    │  ├─ js
+    │  ├─ scss
+    │  ├─ templates
+    │  └─ _theme.scss // Contains aesthetic variables. Edit this file.
+    │
+    ├─ project-hub-information.json // Project data. Edit this file.
+    ├─ gulpfile.js
+    ├─ streams.js
+    ├─ package.json
+    └─ README.md
+  이런식으로 ?
+
+### 3) Streaming Logic 조하영 이규민
 #### A. Streamer
 - Attribute : Remote, Port, PacketSize, StreamingFPS, LossEnable, LossRate, PacketNIP
 - Additional Member Variable : m_socket, m_sendEvent, m_frameN, m_seqN
@@ -72,16 +92,16 @@
 		- Socket 닫고 Callback 함수 초기화하여 Application 종료
 
 
-### 3) Reliability of UDP 조하영
+### 4) Reliability of UDP 조하영
 - Client가 FrameConsumer (void)에서 Frame을 소비할 때, 만약 없는 Frame/Packets이 있다면 Streamer에게 재요청한다. 
 - 재요청하는 방법은 빠진 Packet의 Seqeunce number을 packet header에 추가한 후, Streamer에게 보내는 것이다.
 - Streamer가 Client에게 이 Packet을 받으면 HandleRead()가 Callback으로 불리게 된다.
 - HandleRead()에서 받은 Packet의 Header를 제거하여 Sequence number를 확인한 후, 다시 Packet을 보낸다. (이때는 Loss Enable 적용 안 함)
 	
-### 4) Congestion Control of UDP 이규민
+### 5) Congestion Control of UDP 이규민
 
 
-### 5) Main Function & Network Topology 이원규, 강남구
+### 6) Main Function & Network Topology 이원규, 강남구
 
 
 
@@ -130,5 +150,10 @@ $ ./waf scratch TeamProject
 <br>
 
 ## 6. Timeline
-- 5/6 : 팀플 주제 회의
-- 5/12
+- 5/6 : Project Meeting -> Project 주제 회의 (전체)
+- 5/12 : Project Meeting -> Project 주제 확정 (전체)
+- 5/16 : SubProject Meeting (SubTeam 1 + 이원규)
+- 5/17~5/19 : Development of SubTeam 1
+- 5/20~5/21 : Development of SubTeam 2
+- 5/22~5/24 : Development of SubTeam 3
+- 5/24~5/28 : Development of SubTeam 4
