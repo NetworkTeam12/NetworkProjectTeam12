@@ -158,5 +158,28 @@ Client::StopApplication ()
 	Simulator::Cancel (m_consumEvent);
 }
 
+void
+Client::HandleRead (Ptr<Socket> socket)
+{
+	NS_LOG_FUNCTION (this << socket);
+
+	Ptr<Packet> packet;
+	Address from;
+	Address localAddress;
+
+	while ((packet = socket->RecvFrom (from)))
+	{
+		socket->GetSockName (localAddress);
+
+		SeqTsHeader seqTs;
+		packet->RemoveHeader (seqTs);
+		
+		uint32_t seqN = seqTs.GetSeq();
+		uint32_t frameN = seqN/m_packetNIP;
+
+		PutFrameBuffer(packetN, seqN)
+	}
+}
+
 
 }
