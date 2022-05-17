@@ -1,5 +1,7 @@
 # NetworkProjectTeam12
 
+# 옆에 본인 이름 적힌 항목 채워주시면 됩니다. 제출 시 지울 예정
+
 ## 1. Introduction 장지호
 - repository 소개
 - 팀플 과제 설명 등등 
@@ -32,10 +34,10 @@
 <br>
 
 ## 4. Application Explanation
-### 1) Introduction 
+### 1) Introduction 장지호
 
 
-### 2) Streaming Logic 이규민
+### 2) Streaming Logic 조하영 이규민
 #### A. Streamer
 - Attribute : Remote, Port, PacketSize, StreamingFPS, LossEnable, LossRate, PacketNIP
 - Additional Member Variable : m_socket, m_sendEvent, m_frameN, m_seqN
@@ -89,9 +91,12 @@
 		- Socket 닫고 Callback 함수 초기화하여 Application 종료
 	
 	
-### 3) Reliability of UDP
-조하영
-
+### 3) Reliability of UDP 조하영
+- Client가 FrameConsumer (void)에서 Frame을 소비할 때, 만약 없는 Frame/Packets이 있다면 Streamer에게 재요청한다. 
+- 재요청하는 방법은 빠진 Packet의 Seqeunce number을 packet header에 추가한 후, Streamer에게 보내는 것이다.
+- Streamer가 Client에게 이 Packet을 받으면 HandleRead()가 Callback으로 불리게 된다.
+- HandleRead()에서 받은 Packet의 Header를 제거하여 Sequence number를 확인한 후, 다시 Packet을 보낸다. (이때는 Loss Enable 적용 안 함)
+	
 ### 4) Congestion Control of UDP 이규민
 
 
