@@ -3,10 +3,12 @@
 ## 1. Introduction 
 repository 소개, 팀플 과제 설명 등등 
 
+<br>
 
 ## 2. Environment
 환경 소개 : ns-3 버전, docker 사용 등등
 
+<br>
 
 ## 3. Team Members & Roles
 ### 1) SubTeam 1.
@@ -25,10 +27,12 @@ repository 소개, 팀플 과제 설명 등등
 ### 4) SubTeam 4.
 - 장지호 : README.md 작성, Presentation 제작, Team 발표
 
+<br>
 
 ## 4. Application Explanation
 application 소개 
 
+<br>
 
 ## 5. Running the Application
 ### 1) DockerHub Link
