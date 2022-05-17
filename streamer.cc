@@ -115,5 +115,20 @@ Streamer::StartApplication (void)
   Send();
 }
 
+void 
+Streamer::StopApplication ()
+{
+  NS_LOG_FUNCTION (this);
+
+  if (m_socket != 0) 
+  {
+    m_socket->Close ();
+    m_socket->SetRecvCallback (MakeNullCallback<void, Ptr<Socket> > ());
+    m_socket = 0;
+  }
+  Simulator::Cancel (m_sendEvent);
+}
+
+
 
 }
