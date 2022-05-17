@@ -181,5 +181,30 @@ Client::HandleRead (Ptr<Socket> socket)
 	}
 }
 
+void 
+Client::PutFrameBuffer (uint32_t frameN, uint32_t seqN)
+{
+	Frame frame;
+	if ( m_frameBuffer.find(frameN) != m_frameBuffer.end()) {
+		// Frame exists -> put the frame 
+		frame = m_frameBuffer[frameN];
+		frame.m_packets[seqN % m_packetNIP] = 1;
+		m_frameBuffer[frameN] = frame;
+
+	} else {
+		// Frame does not exist
+		if( m_frameBuffer.size() >= m_bufferSize ){
+			// 1. buffer is full
+			NS_LOG_INFO("Frame buffer is full.");
+		}
+		else { 
+			// 2. buffer is not full 
+			frame.m_packets[seqN % m_packetNIP] = 1;
+			m_frameBuffer.insert(std::make_pair(frameN, frame));
+		}
+	}
+}
+
+
 
 }
