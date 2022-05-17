@@ -39,6 +39,21 @@ namespace ns3{
 			virtual void StopApplication(void);
 
 			void HandleRead (Ptr<Socket> socket);
+			
+
+			// Attribute 
+			Address m_peerAddress;	// Destination address
+			uint16_t m_peerPort;	// Destination port
+			uint32_t m_packetSize 	// Packet size
+			uint32_t m_bufferSize; 	// Frame buffer size
+			bool m_lossEnable;		// Loss Enable 
+			double m_lossRate;		// Loss Rate
+			uint32_t m_packetNIP; 	// Number of packets in Frame
+			uint32_t m_resume;		
+			uint32_t m_pause;
+
+			
+			
 
 	};
 
