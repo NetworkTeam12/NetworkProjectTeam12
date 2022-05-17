@@ -78,5 +78,42 @@ Streamer::~Streamer()
   m_socket = 0;
 }
 
+void 
+Streamer::StartApplication (void)
+{
+  NS_LOG_FUNCTION (this);
+
+  if (!m_socket)
+  {
+    TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
+    m_socket = Socket::CreateSocket (GetNode (), tid);
+
+    if (Ipv4Address::IsMatchingType(m_peerAddress) == true)
+    {
+      if (m_socket->Bind () == -1)
+      {
+        NS_FATAL_ERROR ("Failed to bind socket");
+      }
+      m_socket->Connect (InetSocketAddress (Ipv4Address::ConvertFrom(m_peerAddress), m_peerPort));
+    }
+    else if (InetSocketAddress::IsMatchingType (m_peerAddress) == true)
+    {
+      if (m_socket->Bind () == -1)
+      {
+        NS_FATAL_ERROR ("Failed to bind socket");
+      }
+      m_socket->Connect (m_peerAddress);
+    }
+    else
+    {
+      NS_ASSERT_MSG (false, "Incompatible address type: " << m_peerAddress);
+    }
+  }
+
+  m_socket->SetRecvCallback (MakeCallback (&Streamer::HandleRead, this));
+  m_socket->SetAllowBroadcast (true);
+  Send();
+}
+
 
 }
