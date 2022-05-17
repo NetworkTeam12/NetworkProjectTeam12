@@ -32,10 +32,10 @@
 <br>
 
 ## 4. Application Explanation
-### 1) Introduction 이규민
+### 1) Introduction 
 
 
-### 2) Streaming Logic
+### 2) Streaming Logic 이규민
 #### A. Streamer
 - Attribute : Remote, Port, PacketSize, StreamingFPS, LossEnable, LossRate, PacketNIP
 - Additional Member Variable : m_socket, m_sendEvent, m_frameN, m_seqN
@@ -68,19 +68,23 @@
 - Functions Flow
 	1. Client (), ~ Client (), GetTypeId () 
 	2. StartApplication ()
-		- Udp Socket을 통해 Client와 bind 실행. 
+		- Udp Socket을 통해 요청들어오는 Server와 bind 실행 
 		- Socket을 통해 Packet을 Receive 시 HandleRead()가 불리도록 Callback 연결
-  		- 연결된 Client에게 Frame(Packets)을 보내기 위해 Send() 호출 
-	3. Send ()
-		- LossEnable이 켜져 있을 때, 랜덤 확률을 통해 Packet Loss 발생
-		- 한 frame에 있는 packet들의 갯수만큼 Client에게 전송
-		- Send() 함수를 정해진 FPS에 맞게 실행되도록 scheduling
-	4. HandleRead (Ptr<Socket> socket)
+		- FrameConsumer() 함수를 정해진 Event time에 맞게 실행되도록 scheduling
+	3. HandleRead (Ptr<Socket> socket)
 		- Packet을 받을 때 불리는 Callback function
-		- Packet Header제거 후, Seqence number에 맞는 packet을 resend하기 위해 Resend(seqN) 호출
-	5. ReSend (uint32_t seqN)
-		- 주어진 SeqN에 맞는 Packet을 생성
-		- Client에게 재 전송 
+		- Packet Header제거 후, Frame number, Sequence number 확인 후 PutFrameBuffer() 실행
+	4. PutFrameBuffer (uint32_t frameN, uint32_t seqN)
+		- 넘겨 받은 Frame number, Sequence number에 따라 packet을 Frame buffer에 추가하는 함수
+		- 만약 Frame buffer 안에 해당하는 Frame이 이미 들어가 있다면, 그 Frame 안에 넘겨 받은 Seqence number에 따라 packet 추가
+		- 만약 Frame buffer 안에 해당하는 Frame이 없다면, 해당 Frame을 만든 후 그 안에 넘겨 받은 Seqence number에 따라 packet 추가
+		- 만약 Frame buffer가 가득 찼다면 Frame에 packet 추가 안 함
+	5. FrameConsumer (void)
+		- Frame buffer에 Frame이 있다면, 소비해야 하는 consume number에 해당하는 Frame 찾기
+		- 소비해야 하는 Frame이 없다면, Frame 전체 packet을 Streamer에게 재요청
+		- 소비해야 하는 Frame에 없는 Packet이 있다면, 해당 sequence를 packet에 붙인 후 Streamer에게 Send
+		- 소비해야 하는 Frame에 모든 Packet이 있다면, Frame buffer에 Frame 제거
+		- FrameConsumer() 함수를 정해진 Event time에 맞게 실행되도록 scheduling
 	6. StopApplication ()
 		- Socket 닫고 Callback 함수 초기화하여 Application 종료
 	
