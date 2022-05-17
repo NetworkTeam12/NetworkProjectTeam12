@@ -1,14 +1,14 @@
 # NetworkProjectTeam12
 
-## 1. Introduction 
-repository 소개, 팀플 과제 설명 등등 
-장지호
+## 1. Introduction 장지호
+- repository 소개
+- 팀플 과제 설명 등등 
 
 <br>
 
-## 2. Environment
+## 2. Environment 장지호
 환경 소개 : ns-3 버전, docker 사용 등등
-장지호
+
 
 <br>
 
@@ -32,8 +32,8 @@ repository 소개, 팀플 과제 설명 등등
 <br>
 
 ## 4. Application Explanation
-### 1) Introduction 
-이규민
+### 1) Introduction 이규민
+
 
 ### 2) Streaming Logic
 조하영
@@ -41,33 +41,33 @@ repository 소개, 팀플 과제 설명 등등
 ### 3) Reliability of UDP
 조하영
 
-### 4) Congestion Control of UDP
-이규민
+### 4) Congestion Control of UDP 이규민
 
-### 5) Main Function & Network Topology 
-이원규, 강남구
+
+### 5) Main Function & Network Topology 이원규, 강남구
+
 
 
 <br>
 
 ## 5. Running the Application
-### 1) DockerHub Link
+### 1) DockerHub Link 장지호
 결과물 docker hub link 올리기 
-장지호
 
-### 2) Running the App
+
+### 2) Running the App 이원규 강남구 
 ```
 $ ./waf scratch TeamProject 
 ```
 등등 
-장지호
 
-### 3) Result
+
+### 3) Result 이원규 강남구 
 결과물 -> 그래프
-장지호
 
-### 4) Video Link
+
+### 4) Video Link 장지호
 최종 발표 비디오
-장지호
+
 
 
