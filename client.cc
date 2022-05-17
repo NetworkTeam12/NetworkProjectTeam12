@@ -146,6 +146,17 @@ Client::StartApplication (void)
 
 }
 
+void
+Client::StopApplication ()
+{
+	if (m_socket != 0) 
+	{
+		m_socket->Close ();
+		m_socket->SetRecvCallback (MakeNullCallback<void, Ptr<Socket> > ());
+	}
+
+	Simulator::Cancel (m_consumEvent);
+}
 
 
 }
