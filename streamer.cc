@@ -130,5 +130,33 @@ Streamer::StopApplication ()
 }
 
 
+void 
+Streamer::Send (void)
+{
+  NS_LOG_FUNCTION (this);
+  NS_ASSERT (m_sendEvent.IsExpired ());
+
+	for (uint32_t i=0; i<m_packetNIP; i++){ 
+    if (m_lossEnable){
+			double rand = rand() % 100; // random for 0-99
+			if (rand < m_lossRate) continue;
+		}
+
+		Ptr<Packet> p = Create<Packet> (m_packetSize);
+
+		SeqTsHeader seqTs;	
+		seqTs.SetSeq (m_seqN++);
+		p->AddHeader (seqTs);
+		m_socket->Send (p);
+      
+    Address localAddress;
+	  m_socket->GetSockName (localAddress);
+
+	}
+  
+	m_frameN += 1;
+  m_sendEvent = Simulator::Schedule ( Seconds ((double)1.0/m_fps), &Streamer::Send, this);
+}
+
 
 }
