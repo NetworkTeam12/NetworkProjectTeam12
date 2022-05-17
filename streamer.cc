@@ -180,5 +180,19 @@ Streamer::HandleRead (Ptr<Socket> socket)
 	}
 }
 
+void 
+Streamer::ReSend (uint32_t seqN)
+{
+  NS_LOG_FUNCTION (this);
 
+	Ptr<Packet> p = Create<Packet> (m_packetSize);
+
+	SeqTsHeader seqTs;	
+	seqTs.SetSeq (seqN);
+	p->AddHeader (seqTs);
+  m_socket->Send (p);
+
+  Address localAddress;
+	m_socket->GetSockName (localAddress);
+}
 }
