@@ -16,20 +16,21 @@
 
 ## 3. Team Members & Roles
 ### 1) SubTeam 1.
-- Streamer.h, Streamer.cc, Client.h, Client.cc
+- Streamer.h, Streamer.cc, Client.h, Client.cc, README.md
 - 조하영 : Streaming Code의 전체적인 틀, Reliability of UDP, README.md 작성
 - 이규민 : Streaming Code의 전체적인 틀, Congestion control of UDP, README.md 작성
 
 ### 2) SubTeam 2.
-- StreamingHelper.cc StreamingHelper.h
+- StreamingHelper.cc StreamingHelper.h, README.md
 - 이경돈 : Streaming Helper Code 전체, README.md 작성
 
 ### 3) SubTeam 3.
-- Project.cc
+- Project.cc, README.md
 - 이원규, 강남구 : Project Code 전체(Network topology 구상), 다양한 네트워크 환경과 노드 특성을 가지고 실험, README.md 작성
 
 ### 4) SubTeam 4.
-- 장지호 : README.md 작성, Presentation 제작, Team 발표
+- README.md, .ppt
+- 장지호 : README.md 작성 및 , Presentation 제작, Team 발표
 
 <br>
 
