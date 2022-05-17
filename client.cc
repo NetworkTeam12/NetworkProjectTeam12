@@ -86,6 +86,12 @@ Frame::Frame ()
 	m_consume = 0;
 }
 
+Frame::~Frame()
+{
+
+}
+
+
 
 
 }
