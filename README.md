@@ -154,6 +154,6 @@ $ ./waf scratch TeamProject
 - 5/12 : Project Meeting -> Project 주제 확정 (전체)
 - 5/16 : SubProject Meeting (SubTeam 1 + 이원규)
 - 5/17~5/19 : Development of SubTeam 1
-- 5/20~5/21 : Development of SubTeam 2
-- 5/22~5/24 : Development of SubTeam 3
-- 5/24~5/28 : Development of SubTeam 4
+- 5/20 : Development of SubTeam 2
+- 5/21~5/22 : Development of SubTeam 3
+- 5/23~5/28 : Development of SubTeam 4
