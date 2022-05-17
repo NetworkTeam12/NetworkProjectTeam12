@@ -107,5 +107,45 @@ Client::~Client ()
 	m_socket = 0;
 }
 
+void 
+Client::StartApplication (void)
+{
+	NS_LOG_FUNCTION (this);
+	
+	if (m_socket == 0)
+  	{
+		TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
+		m_socket = Socket::CreateSocket (GetNode (), tid);
+		InetSocketAddress local = InetSocketAddress (Ipv4Address::GetAny (), m_peerPort);
+
+		if (m_socket->Bind (local) == -1)
+		{
+			NS_FATAL_ERROR ("Failed to bind socket");
+		}
+    
+		if (addressUtils::IsMulticast (m_local))
+		{
+			Ptr<UdpSocket> udpSocket = DynamicCast<UdpSocket> (m_socket);
+			if (udpSocket)
+			{
+				// equivalent to setsockopt (MCAST_JOIN_GROUP)
+				udpSocket->MulticastJoinGroup (0, m_local);
+			}
+			else
+			{
+				NS_FATAL_ERROR ("Error: Failed to join multicast group");
+			}
+		}
+  	}
+	if (m_packetNIP < 1 && m_packetNIP > 1000 ){
+		NS_FATAL_ERROR ("Error: Too many packets in frame. Set the characteristics a little less.");
+	}
+
+	m_socket->SetRecvCallback (MakeCallback (&Client::HandleRead, this));
+	m_consumEvent = Simulator::Schedule ( Seconds ((double)1.5), &Client::FrameConsumer, this);
+
+}
+
+
 
 }
