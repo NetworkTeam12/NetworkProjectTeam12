@@ -92,6 +92,15 @@ Frame::~Frame()
 }
 
 
+Client::Client ()
+{
+	NS_LOG_FUNCTION (this);
+	m_consumEvent = EventId ();
+  	m_frameN = 0;
+	m_seqN = 0;
+	m_consumeN = 0;
+}
+
 
 
 }
