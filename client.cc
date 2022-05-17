@@ -101,6 +101,11 @@ Client::Client ()
 	m_consumeN = 0;
 }
 
+Client::~Client ()
+{
+	NS_LOG_FUNCTION (this);
+	m_socket = 0;
+}
 
 
 }
