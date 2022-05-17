@@ -79,6 +79,13 @@ Client::GetTypeId (void)
 	return tid;
 }
 
+Frame::Frame ()
+{
+	for (uint32_t i=0; i<m_packetNIP; i++)
+		m_packets[i] = 0;
+	m_consume = 0;
+}
+
 
 
 }
