@@ -14,27 +14,7 @@
 
 <br>
 
-## 3. Team Members & Roles
-### 1) SubTeam 1.
-- Streamer.h, Streamer.cc, Client.h, Client.cc, README.md
-- 조하영 : Streaming Code의 전체적인 틀, Reliability of UDP, README.md 작성
-- 이규민 : Streaming Code의 전체적인 틀, Congestion control of UDP, README.md 작성
-
-### 2) SubTeam 2.
-- StreamingHelper.cc StreamingHelper.h, README.md
-- 이경돈 : Streaming Helper Code 전체, README.md 작성
-
-### 3) SubTeam 3.
-- Project.cc, README.md
-- 이원규, 강남구 : Project Code 전체(Network topology 구상), 다양한 네트워크 환경과 노드 특성을 가지고 실험, README.md 작성
-
-### 4) SubTeam 4.
-- README.md, .ppt
-- 장지호 : README.md 작성 및 , Presentation 제작, Team 발표
-
-<br>
-
-## 4. Application Explanation
+## 3. Application Explanation
 ### 1) Introduction 장지호
 
 
@@ -90,8 +70,8 @@
 		- FrameConsumer() 함수를 정해진 Event time에 맞게 실행되도록 scheduling
 	6. StopApplication ()
 		- Socket 닫고 Callback 함수 초기화하여 Application 종료
-	
-	
+
+
 ### 3) Reliability of UDP 조하영
 - Client가 FrameConsumer (void)에서 Frame을 소비할 때, 만약 없는 Frame/Packets이 있다면 Streamer에게 재요청한다. 
 - 재요청하는 방법은 빠진 Packet의 Seqeunce number을 packet header에 추가한 후, Streamer에게 보내는 것이다.
@@ -107,7 +87,7 @@
 
 <br>
 
-## 5. Running the Application
+## 4. Running the Application
 ### 1) DockerHub Link 장지호
 결과물 docker hub link 올리기 
 
@@ -127,4 +107,28 @@ $ ./waf scratch TeamProject
 최종 발표 비디오
 
 
+<br>
 
+## 5. Team Members & Roles
+### 1) SubTeam 1.
+- Streamer.h, Streamer.cc, Client.h, Client.cc, README.md
+- 조하영 : Streaming Code의 전체적인 틀, Reliability of UDP, README.md 작성
+- 이규민 : Streaming Code의 전체적인 틀, Congestion control of UDP, README.md 작성
+
+### 2) SubTeam 2.
+- StreamingHelper.cc StreamingHelper.h, README.md
+- 이경돈 : Streaming Helper Code 전체, README.md 작성
+
+### 3) SubTeam 3.
+- Project.cc, README.md
+- 이원규, 강남구 : Project Code 전체(Network topology 구상), 다양한 네트워크 환경과 노드 특성을 가지고 실험, README.md 작성
+
+### 4) SubTeam 4.
+- README.md, .ppt
+- 장지호 : README.md 작성 및 , Presentation 제작, Team 발표
+
+<br>
+
+## 6. Timeline
+- 5/6 : 팀플 주제 회의
+- 5/12
