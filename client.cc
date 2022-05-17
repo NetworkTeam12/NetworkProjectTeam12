@@ -206,5 +206,53 @@ Client::PutFrameBuffer (uint32_t frameN, uint32_t seqN)
 }
 
 
+void
+Client::FrameConsumer (void)
+{
+	if( m_frameBuffer.size() > 0 ){
+		if (m_frameBuffer.find(m_consumeN) != m_frameBuffer.end()) {
+			// Frame exists -> check the packet -> request the pakcet
+
+			int resend = 0;
+			Frame frame = m_frameBuffer[m_consumeN];
+			for (int i=0; i<m_packetNIP; i++){
+				if(frame.m_packets[i] == 0){
+					Ptr<Packet> p = Create<Packet> (m_packetSize);
+					
+					SeqTsHeader header;
+					header.SetSeq(m_packetNIP*m_consumeN + i);
+					p->AddHeader(header);
+
+					Ptr<UdpSocket> udpSocket = DynamicCast<UdpSocket> (m_socket);
+					udpSocket->SendTo (p, 0, m_peerAddress);
+
+					resend = 1;
+				}
+			}
+
+			if(resend==0){
+				m_frameBuffer.erase(m_consumeN++);
+			}
+			
+		} else {
+			// Frame does not exist -> request the frame
+
+			for (uint32_t i=0; i<m_packetNIP; i++){
+				Ptr<Packet> p = Create<Packet> (m_packetSize);
+					
+				SeqTsHeader header;
+				header.SetSeq(m_packetNIP*m_consumeN + i);
+				p->AddHeader (header);
+
+				Ptr<UdpSocket> udpSocket = DynamicCast<UdpSocket> (m_socket);
+				udpSocket->SendTo (p, 0, m_peerAddress);
+			}
+			
+		}
+	}
+
+	m_consumEvent = Simulator::Schedule ( Seconds ((double)1.0), &Client::FrameConsumer, this);
+}
+
 
 }
