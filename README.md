@@ -16,7 +16,7 @@
 
 ## 3. Application Explanation
 ### 1) Introduction 장지호
-
+간략한 application 소개
 
 ### 2) Code Tree 장지호
     ├─ app // Final output. Don't edit this folder.
