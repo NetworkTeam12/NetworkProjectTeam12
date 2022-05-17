@@ -36,7 +36,30 @@
 
 
 ### 2) Streaming Logic
-조하영
+#### A. Streamer
+- Attribute : Remote, Port, PacketSize, StreamingFPS, LossEnable, LossRate, PacketNIP
+- Additional Member Variable : m_socket, m_sendEvent, m_frameN, m_seqN
+- Function Flow
+	1. Streamer (), GetTypeId () 
+	
+	2. StartApplication ()
+  		- Udp Socket을 통해 Client와 bind 실행. 
+  		  - 이때, Server Socket은 m_socket, Client의 Address, Port는 Remote, Por
+  		- Socket을 통해 Packet을 Receive 시 HandleRead()가 불리도록 Callback 연결
+  		- 연결된 Client에게 Frame(Packets)을 보내기 위해 Send() 호출 
+  
+	3. Send ()
+			- LossEnable이 켜져 있을 때, 랜덤 확률을 통해 Packet Loss 발생
+				- 이때, Packet Loss rate는 LossRate
+			- 한 frame에 있는 packet들의 갯수만큼 Client에게 전송
+				- 이때, 한 frame에 있는 packet들의 갯수는 PacketNIP
+			- Send() 함수를 정해진 FPS에 맞게 실행되도록 scheduling
+				- 이때, 정해진 FPS는 StreamingFPS이며, Scheduling event는 m_sendEvent
+
+
+
+#### B. Client
+
 
 ### 3) Reliability of UDP
 조하영
