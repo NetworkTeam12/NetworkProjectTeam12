@@ -52,6 +52,14 @@ namespace ns3{
 			uint32_t m_resume;		
 			uint32_t m_pause;
 
+			// Additional member variables
+			Ptr<Socket> m_socket;	// My socket
+			Address m_local;		// Local adderss
+			EventId m_consumEvent;  // Consume event
+			uint32_t m_frameN; 	// Frame number attached to the packet header
+			uint32_t m_seqN;	// Sequence number attached to the packet header
+			std::map<uint32_t, Frame> m_frameBuffer;	// Frame buffer -> (FrameIndex, Frame)
+			uint32_t m_consumeN; // The index of the frame that should now be consumed
 			
 			
 
