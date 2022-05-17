@@ -158,5 +158,27 @@ Streamer::Send (void)
   m_sendEvent = Simulator::Schedule ( Seconds ((double)1.0/m_fps), &Streamer::Send, this);
 }
 
+void
+Streamer::HandleRead (Ptr<Socket> socket)
+{
+  NS_LOG_FUNCTION (this);
+  Ptr<Packet> packet;
+  Address from;
+  Address localAddress;
+  
+	while ((packet = socket->RecvFrom (from)))
+  {
+    if (InetSocketAddress::IsMatchingType (from))
+    {
+			
+			SeqTsHeader seqTs;
+			packet->RemoveHeader (seqTs);
+			uint32_t seqN = seqTs.GetSeq();
+			ReSendPacket(seqN);
+    }
+    socket->GetSockName (localAddress);
+	}
+}
+
 
 }
