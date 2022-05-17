@@ -43,20 +43,26 @@
 	1. Streamer (), GetTypeId () 
 	
 	2. StartApplication ()
-  		- Udp Socket을 통해 Client와 bind 실행. 
-  		  - 이때, Server Socket은 m_socket, Client의 Address, Port는 Remote, Por
-  		- Socket을 통해 Packet을 Receive 시 HandleRead()가 불리도록 Callback 연결
+  	        - Udp Socket을 통해 Client와 bind 실행. 
+  	        - Socket을 통해 Packet을 Receive 시 HandleRead()가 불리도록 Callback 연결
   		- 연결된 Client에게 Frame(Packets)을 보내기 위해 Send() 호출 
   
 	3. Send ()
-			- LossEnable이 켜져 있을 때, 랜덤 확률을 통해 Packet Loss 발생
-				- 이때, Packet Loss rate는 LossRate
-			- 한 frame에 있는 packet들의 갯수만큼 Client에게 전송
-				- 이때, 한 frame에 있는 packet들의 갯수는 PacketNIP
-			- Send() 함수를 정해진 FPS에 맞게 실행되도록 scheduling
-				- 이때, 정해진 FPS는 StreamingFPS이며, Scheduling event는 m_sendEvent
+	        - LossEnable이 켜져 있을 때, 랜덤 확률을 통해 Packet Loss 발생
+		- 한 frame에 있는 packet들의 갯수만큼 Client에게 전송
+		- Send() 함수를 정해진 FPS에 맞게 실행되도록 scheduling
 
+        4. HandleRead (Ptr<Socket> socket)
+                - Packet을 받을 때 불리는 Callback function
+                - Packet Header제거 후, Seqence number에 맞는 packet을 resend하기 위해 Resend(seqN) 호출
 
+        5. ReSend (uint32_t seqN)
+                - 주어진 SeqN에 맞는 Packet을 생성
+                - Client에게 재 전송 
+
+        6. StopApplication ()
+                - Socket 닫고 Callback 함수 초기화하여 Application 종료
+         
 
 #### B. Client
 
