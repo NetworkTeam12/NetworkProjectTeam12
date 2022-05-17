@@ -63,5 +63,14 @@ Streamer::GetTypeId (void)
 	return tid;
 }
 
+Streamer::Streamer ()
+{
+  NS_LOG_FUNCTION (this);
+  m_socket = 0;
+  m_sendEvent = EventId ();
+  m_frameN = 0;
+	m_seqN = 0;
+}
+
 
 }
