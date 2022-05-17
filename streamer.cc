@@ -72,5 +72,11 @@ Streamer::Streamer ()
 	m_seqN = 0;
 }
 
+Streamer::~Streamer()
+{
+  NS_LOG_FUNCTION (this);
+  m_socket = 0;
+}
+
 
 }
