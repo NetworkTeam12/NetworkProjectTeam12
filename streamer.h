@@ -24,11 +24,12 @@ namespace ns3 {
 			void SendPacket (void);
 			void ReSendPacket (uint32_t seqN);
 			void HandleRead (Ptr<Socket> socket);
+			void Flowcontrol(uint32_t drop, uint32_t seqN);
 			
 			// Attribute 
 			Address m_peerAddress;	// Destination address
 			uint16_t m_peerPort;	// Destination port
-			uint32_t m_packetSize 	// Packet size
+			uint32_t m_packetSize; 	// Packet size
 			uint32_t m_fps;			// Streaming FPS
 			bool m_lossEnable;		// Loss Enable 
 			double m_lossRate;		// Loss Rate
@@ -37,8 +38,13 @@ namespace ns3 {
 			// Additional member variables
 			Ptr<Socket> m_socket;	// My socket
 			EventId m_sendEvent;	// Send event
+			EventId m_congestionEvent; // congestion event 
 			uint32_t m_frameN; 	// Frame number attached to the packet header
 			uint32_t m_seqN;	// Sequence number attached to the packet header
+			uint32_t m_mode;		// congestion control mode
+			bool m_slowstart; // slow start
+			uint32_t m_threshold; // threshold
+			uint32_t m_flag;
 
 
 	};
