@@ -11,7 +11,7 @@
 #include "ns3/double.h"
 #include "ns3/boolean.h"
 
-#include "streaming-streamer.h"
+#include "streamer.h"
 
 namespace ns3 {
 
@@ -57,7 +57,17 @@ Streamer::GetTypeId (void)
     .AddAttribute ("PacketNIP", 
                    "Number of packets in Frame",
                    UintegerValue(100),
-                   MakeUintegerAccessor (&StreamingStreamer::m_packetNIP),
+                   MakeUintegerAccessor (&Streamer::m_packetNIP),
+                   MakeUintegerChecker<uint32_t> ())
+    .AddAttribute ("Mode", 
+                   "Select congestion control mode",
+                   UintegerValue(0),
+                   MakeUintegerAccessor (&Streamer::m_mode),
+                   MakeUintegerChecker<uint32_t> ())
+    .AddAttribute ("threshold", 
+                   "Select threshold",
+                   UintegerValue(200),
+                   MakeUintegerAccessor (&Streamer::m_threshold),
                    MakeUintegerChecker<uint32_t> ())
 	;
 	return tid;
@@ -70,6 +80,8 @@ Streamer::Streamer ()
   m_sendEvent = EventId ();
   m_frameN = 0;
 	m_seqN = 0;
+  m_slowstart = true;
+  m_flag = 0;
 }
 
 Streamer::~Streamer()
@@ -153,8 +165,8 @@ Streamer::Send (void)
 	  m_socket->GetSockName (localAddress);
 
 	}
-  
 	m_frameN += 1;
+  Flowcontrol(0,1);
   m_sendEvent = Simulator::Schedule ( Seconds ((double)1.0/m_fps), &Streamer::Send, this);
 }
 
@@ -170,7 +182,10 @@ Streamer::HandleRead (Ptr<Socket> socket)
   {
     if (InetSocketAddress::IsMatchingType (from))
     {
-			
+			if (m_lossEnable){
+			double rand = rand() % 100; // random for 0-99
+			if (rand < m_lossRate) continue;
+		  }
 			SeqTsHeader seqTs;
 			packet->RemoveHeader (seqTs);
 			uint32_t seqN = seqTs.GetSeq();
@@ -186,7 +201,7 @@ Streamer::ReSend (uint32_t seqN)
   NS_LOG_FUNCTION (this);
 
 	Ptr<Packet> p = Create<Packet> (m_packetSize);
-
+  Flowcontrol(1, seqN); //congestion control
 	SeqTsHeader seqTs;	
 	seqTs.SetSeq (seqN);
 	p->AddHeader (seqTs);
@@ -194,5 +209,48 @@ Streamer::ReSend (uint32_t seqN)
 
   Address localAddress;
 	m_socket->GetSockName (localAddress);
+}
+
+void
+Streamer::Flowcontrol(uint32_t drop, uint32_t seqN){
+  if(m_mode == 0){ // AIMD
+    if(drop){
+      m_fps = m_fps / 2;
+      if(m_fps < 10){
+        m_fps = 10;
+      }
+    }
+    else{
+      m_fps++;
+    }
+  } 
+  else if(m_mode == 1){ // Slow Start
+    if(drop){
+      if(m_slowstart){
+        if(m_seqN -3 > seqN){
+          m_slowstart = false;
+          m_threshold = m_fps / 2;
+          m_fps = 10;
+        }
+        else{
+          m_fps = 10;
+        }
+      }
+      else{
+        m_threshold = m_fps / 2;
+        m_fps = 10;
+      }
+    }
+    else{
+      if(m_seqN < m_threshold){ //Slow start
+          m_fps = m_fps * 2;
+        }
+      else{ //Congestion avoidance
+        m_fps++;
+      }
+    }
+  }
+  else{ // Not used
+  }
 }
 }

@@ -13,7 +13,7 @@
 #include "ns3/double.h"
 #include "ns3/boolean.h"
 
-#include "streaming-client.h"
+#include "client.h"
 #include <iostream>
 
 namespace ns3 {
