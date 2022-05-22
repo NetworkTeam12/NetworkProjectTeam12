@@ -11,6 +11,8 @@
 #include "ns3/double.h"
 #include "ns3/boolean.h"
 
+#include <cstdlib>
+
 #include "streamer.h"
 
 namespace ns3 {
@@ -150,7 +152,7 @@ Streamer::Send (void)
 
 	for (uint32_t i=0; i<m_packetNIP; i++){ 
     if (m_lossEnable){
-			double rand = rand() % 100; // random for 0-99
+			double rand = std::rand() % 100; // random for 0-99
 			if (rand < m_lossRate) continue;
 		}
 
@@ -183,13 +185,13 @@ Streamer::HandleRead (Ptr<Socket> socket)
     if (InetSocketAddress::IsMatchingType (from))
     {
 			if (m_lossEnable){
-			double rand = rand() % 100; // random for 0-99
+			double rand = std::rand() % 100; // random for 0-99
 			if (rand < m_lossRate) continue;
 		  }
 			SeqTsHeader seqTs;
 			packet->RemoveHeader (seqTs);
 			uint32_t seqN = seqTs.GetSeq();
-			ReSendPacket(seqN);
+			ReSend(seqN);
     }
     socket->GetSockName (localAddress);
 	}

@@ -72,7 +72,7 @@ Client::GetTypeId (void)
 	.AddAttribute ("PacketNIP", 
                    "Number of packets in Frame",
                    UintegerValue(100),
-                   MakeUintegerAccessor (&StreamingStreamer::m_packetNIP),
+                   MakeUintegerAccessor (&Client::m_packetNIP),
                    MakeUintegerChecker<uint32_t> ())
 
 	;
@@ -83,7 +83,7 @@ Frame::Frame ()
 {
 	for (uint32_t i=0; i<m_packetNIP; i++)
 		m_packets[i] = 0;
-	m_consume = 0;
+	m_consumeN = 0;
 }
 
 Frame::~Frame()
@@ -175,9 +175,9 @@ Client::HandleRead (Ptr<Socket> socket)
 		packet->RemoveHeader (seqTs);
 		
 		uint32_t seqN = seqTs.GetSeq();
-		uint32_t frameN = seqN/m_packetNIP;
+		m_frameN = seqN/m_packetNIP;
 
-		PutFrameBuffer(packetN, seqN)
+		PutFrameBuffer(m_frameN, seqN);
 	}
 }
 
@@ -215,7 +215,7 @@ Client::FrameConsumer (void)
 
 			int resend = 0;
 			Frame frame = m_frameBuffer[m_consumeN];
-			for (int i=0; i<m_packetNIP; i++){
+			for (uint32_t i=0; i<m_packetNIP; i++){
 				if(frame.m_packets[i] == 0){
 					Ptr<Packet> p = Create<Packet> (m_packetSize);
 					

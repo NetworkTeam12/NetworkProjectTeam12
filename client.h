@@ -21,6 +21,8 @@ namespace ns3{
 			Frame ();
 			~Frame ();
 			int m_packets[1000];
+			uint32_t m_consumeN;
+			uint32_t m_packetNIP;
 	};
 
 
@@ -44,7 +46,7 @@ namespace ns3{
 			// Attribute 
 			Address m_peerAddress;	// Destination address
 			uint16_t m_peerPort;	// Destination port
-			uint32_t m_packetSize 	// Packet size
+			uint32_t m_packetSize;	// Packet size
 			uint32_t m_bufferSize; 	// Frame buffer size
 			bool m_lossEnable;		// Loss Enable 
 			double m_lossRate;		// Loss Rate

@@ -21,8 +21,8 @@ namespace ns3 {
 			virtual void StartApplication (void);
 			virtual void StopApplication (void);
 
-			void SendPacket (void);
-			void ReSendPacket (uint32_t seqN);
+			void Send (void);
+			void ReSend (uint32_t seqN);
 			void HandleRead (Ptr<Socket> socket);
 			void Flowcontrol(uint32_t drop, uint32_t seqN);
 			
