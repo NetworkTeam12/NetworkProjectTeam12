@@ -1,0 +1,37 @@
+Meeting 1.
+    date: 2022-05-21~
+
+    1. topology에 wifi, p2p 구현 필요.
+    2. 조절할 변수 : pkt size, streaming fps, loss enalble, lossrate, 
+    3. 기존 과제에 사용된 토폴로지
+
+    각 Topol에서 변수를 적당히 조절하며 3~4개의 케이스를 생성.
+
+    Topol1.
+
+        N1                  1. N1,N2와 브릿지를 wifi로 잇고 브릿지와 N3를 p2p로 연결해도 될 것 같음.
+           \                2.                 p2p
+              bridge - N3   3. 
+           /                4. 
+        N2                  5. 
+
+    Topol2.
+
+        N1 - N2 - N3 - N4   1. 각 노드간 활발한 송수신.
+
+    Topol3.
+        - - csma  - -       1. 스위치의 버퍼양이나 전송속도를 조절해서 relability를 체크.
+        |   |   |   |
+        N1  N2  N3  N4
+
+    Topol4.
+        
+       Wifi 192.168.1.0
+   
+          AP
+        *    *
+        |    |
+        n1   n2
+    
+
+    
