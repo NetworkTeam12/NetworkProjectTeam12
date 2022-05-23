@@ -123,7 +123,8 @@ Streamer::StartApplication (void)
       NS_ASSERT_MSG (false, "Incompatible address type: " << m_peerAddress);
     }
   }
-
+  
+  NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << "Streamer StartApplication" );
   m_socket->SetRecvCallback (MakeCallback (&Streamer::HandleRead, this));
   m_socket->SetAllowBroadcast (true);
   Send();
@@ -153,6 +154,7 @@ Streamer::Send (void)
 	for (uint32_t i=0; i<m_packetNIP; i++){ 
     if (m_lossEnable){
 			double rand = std::rand() % 100; // random for 0-99
+			NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << "Streamer loss enable" );
 			if (rand < m_lossRate) continue;
 		}
 
@@ -162,8 +164,10 @@ Streamer::Send (void)
 		seqTs.SetSeq (m_seqN++);
 		p->AddHeader (seqTs);
 		m_socket->Send (p);
-      
-    Address localAddress;
+    
+		NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Streamer sent "  <<  Ipv4Address::ConvertFrom (m_peerAddress) << " port " << m_peerPort << " frame : " << m_frameN << " seq : "  << m_seqN );
+
+		Address localAddress;
 	  m_socket->GetSockName (localAddress);
 
 	}
@@ -184,14 +188,12 @@ Streamer::HandleRead (Ptr<Socket> socket)
   {
     if (InetSocketAddress::IsMatchingType (from))
     {
-			if (m_lossEnable){
-			double rand = std::rand() % 100; // random for 0-99
-			if (rand < m_lossRate) continue;
-		  }
+	    NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Streamer received " << packet->GetSize () << " bytes from " <<  InetSocketAddress::ConvertFrom (from).GetIpv4 () << " port " <<  InetSocketAddress::ConvertFrom (from).GetPort ());
 			SeqTsHeader seqTs;
 			packet->RemoveHeader (seqTs);
 			uint32_t seqN = seqTs.GetSeq();
 			ReSend(seqN);
+
     }
     socket->GetSockName (localAddress);
 	}
@@ -208,7 +210,7 @@ Streamer::ReSend (uint32_t seqN)
 	seqTs.SetSeq (seqN);
 	p->AddHeader (seqTs);
   m_socket->Send (p);
-
+NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Streamer resent packet, seq : "  << seqN );
   Address localAddress;
 	m_socket->GetSockName (localAddress);
 }
