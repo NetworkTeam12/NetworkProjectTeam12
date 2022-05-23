@@ -1,20 +1,20 @@
 # NetworkProjectTeam12
 # 파일 구성 방법
 1.
-client.cc, client.h, server.cc, server.h : /src/applications/model/ directory 안에 넣어주시고
-helper.cc, helper.h : /src/applictions/helper/ directory 안에 넣어주시고
-mainfile.cc 는 /script/에 넣어주시고
+- client.cc, client.h, server.cc, server.h : /src/applications/model/ directory 안에 넣어주시고
+- helper.cc, helper.h : /src/applictions/helper/ directory 안에 넣어주시고
+- mainfile.cc 는 /script/에 넣어주시고
 
 2.
-/src/application/wscript 에서 obj.source = [ 안에 'model/client.cc', 'model/server.cc', 'helper/helper.cc'] 추가해주시고
-headers.source = [ 안에는  'model/client.h', 'model/server.h', 'helper/helper.h'] 추가해주시면 됩니다
+- /src/application/wscript 에서 obj.source = [ 안에 'model/client.cc', 'model/server.cc', 'helper/helper.cc'] 추가해주시고
+- headers.source = [ 안에는  'model/client.h', 'model/server.h', 'helper/helper.h'] 추가해주시면 됩니다
 
 3.
-ns-3.29$ ./waf clean
-ns-3.29$ ./waf configure --build-profile=debug
-ns-3.29$ ./waf
-ns-3.29$ ./waf script/mainfile
-하시면 됩니다 
+- ns-3.29$ ./waf clean
+- ns-3.29$ ./waf configure --build-profile=debug
+- ns-3.29$ ./waf
+- ns-3.29$ ./waf script/mainfile
+- 하시면 됩니다 
 
 
 
