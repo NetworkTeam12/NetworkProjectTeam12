@@ -37,6 +37,7 @@ main(int argc, char*argv[])
 	cmd.AddValue("ThresHold","Select threshold", thresHold);
 	cmd.AddValue("BufferSize","The frame buffer size", bufferSize);
 
+
 	cmd.Parse(argc,argv);
 
     std::string datarate="10Mbps";
