@@ -21,8 +21,6 @@ namespace ns3{
 			Frame ();
 			~Frame ();
 			int m_packets[1000];
-			uint32_t m_consumeN;
-			uint32_t m_packetNIP;
 	};
 
 
