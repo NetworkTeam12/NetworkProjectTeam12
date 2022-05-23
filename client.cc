@@ -81,9 +81,8 @@ Client::GetTypeId (void)
 
 Frame::Frame ()
 {
-	for (uint32_t i=0; i<m_packetNIP; i++)
+	for (uint32_t i=0; i<1000; i++)
 		m_packets[i] = 0;
-	m_consumeN = 0;
 }
 
 Frame::~Frame()
