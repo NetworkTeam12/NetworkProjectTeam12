@@ -18,14 +18,14 @@ main(int argc, char*argv[])
 	LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_DEBUG);
 
 	CommandLine cmd;
-	uint32_t fps = 30;
-	uint32_t packetSize = 30;
-	uint32_t packetNip = 30;
-	bool lossEnable = false;
-	double lossRate = 0.01;
-	uint32_t mode = 0;
-	uint32_t thresHold = 30;
-	uint32_t bufferSize = 40;
+	uint32_t fps = 30; 			//30
+	uint32_t packetSize = 100; 	//100
+	uint32_t packetNip = 100; 	//100
+	bool lossEnable = false;	//false
+	double lossRate = 0.01;	 	//0.01
+	uint32_t mode = 0; 			//0
+	uint32_t thresHold = 200; 	//200
+	uint32_t bufferSize = 40; 	//40
 
 	// cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
 	cmd.AddValue("PacketSize","PacketSize", packetSize);
@@ -36,7 +36,6 @@ main(int argc, char*argv[])
 	cmd.AddValue("Mode","Select congestion control mode", mode);
 	cmd.AddValue("ThresHold","Select threshold", thresHold);
 	cmd.AddValue("BufferSize","The frame buffer size", bufferSize);
-
 
 	cmd.Parse(argc,argv);
 
