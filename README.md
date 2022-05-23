@@ -3,7 +3,7 @@
 1.
 - client.cc, client.h, server.cc, server.h : /src/applications/model/ directory 안에 넣어주시고
 - helper.cc, helper.h : /src/applictions/helper/ directory 안에 넣어주시고
-- mainfile.cc 는 /script/에 넣어주시고
+- mainfile.cc 는 /scratch/에 넣어주시고
 
 2.
 - /src/application/wscript 에서 obj.source = [ 안에 'model/client.cc', 'model/server.cc', 'helper/helper.cc'] 추가해주시고
@@ -13,7 +13,7 @@
 - ns-3.29$ ./waf clean
 - ns-3.29$ ./waf configure --build-profile=debug
 - ns-3.29$ ./waf
-- ns-3.29$ ./waf script/mainfile
+- ns-3.29$ ./waf scratch/mainfile
 - 하시면 됩니다 
 
 
