@@ -60,7 +60,7 @@ main(int argc, char*argv[])
 
 	StreamerHelper echoServer(interfaces.GetAddress(0), 9);
 	echoServer.SetAttribute("LossEnable", BooleanValue (lossEnable));
-	echoServer.SetAttribute("LossRate",UintegerValue(lossRate));
+	echoServer.SetAttribute("LossRate",DoubleValue(lossRate));
 
 	echoServer.SetAttribute("PacketSize",UintegerValue(packet_size));
 	echoServer.SetAttribute("PacketNIP",UintegerValue(packet_nip));
@@ -72,7 +72,7 @@ main(int argc, char*argv[])
 
 	ApplicationContainer serverApps(echoServer.Install(nodes.Get(1)));
 	serverApps.Start(Seconds(1.0));
-	serverApps.Stop(Seconds(24.0));
+	serverApps.Stop(Seconds(29.0));
 
 	ClientHelper echoClient(9);
 	echoClient.SetAttribute("PacketSize",UintegerValue(packet_size));
@@ -82,10 +82,10 @@ main(int argc, char*argv[])
 
 	ApplicationContainer clientApps(echoClient.Install(nodes.Get(0)));
 	clientApps.Start(Seconds(0.0));
-	clientApps.Stop(Seconds(25.0));
+	clientApps.Stop(Seconds(30.0));
 
 	Simulator::Run();
-	Simulator::Stop(Seconds(25.0));
+	Simulator::Stop(Seconds(30.0));
 	Simulator::Destroy();
 
 	return 0;
