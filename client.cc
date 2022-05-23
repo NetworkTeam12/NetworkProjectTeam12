@@ -59,16 +59,6 @@ Client::GetTypeId (void)
                    DoubleValue (0.01),
                    MakeDoubleAccessor (&Client::m_lossRate),
                    MakeDoubleChecker<double> ())
-    .AddAttribute ("PauseSize", 
-                   "The pause size for the frame buffer",
-					UintegerValue (30),
-					MakeUintegerAccessor (&Client::m_pause),
-					MakeUintegerChecker<uint32_t> ())
-    .AddAttribute ("ResumeSize", 
-                   "The resume size for the frame buffer",
-					UintegerValue (5),
-					MakeUintegerAccessor (&Client::m_resume),
-					MakeUintegerChecker<uint32_t> ())
 	.AddAttribute ("PacketNIP", 
                    "Number of packets in Frame",
                    UintegerValue(100),
@@ -140,9 +130,11 @@ Client::StartApplication (void)
 		NS_FATAL_ERROR ("Error: Too many packets in frame. Set the characteristics a little less.");
 	}
 
+	NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << "Client StartApplication" );
 	m_socket->SetRecvCallback (MakeCallback (&Client::HandleRead, this));
 	m_consumEvent = Simulator::Schedule ( Seconds ((double)1.5), &Client::FrameConsumer, this);
 
+	
 }
 
 void
@@ -175,7 +167,7 @@ Client::HandleRead (Ptr<Socket> socket)
 		
 		uint32_t seqN = seqTs.GetSeq();
 		m_frameN = seqN/m_packetNIP;
-
+		NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Client received packet from " << InetSocketAddress::ConvertFrom (from).GetIpv4 () << " port " << InetSocketAddress::ConvertFrom (from).GetPort () << " frame : " << m_frameN << " seq : " << seqN );
 		PutFrameBuffer(m_frameN, seqN);
 	}
 }
