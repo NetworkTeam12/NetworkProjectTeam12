@@ -29,11 +29,6 @@ Client::GetTypeId (void)
 	.SetParent<Application> ()
 	.SetGroupName("Applications")
 	.AddConstructor<Client> ()
-	.AddAttribute ("Remote", 
-                   "The address of the destination",
-                   AddressValue (),
-                   MakeAddressAccessor (&Client::m_peerAddress),
-                   MakeAddressChecker ())
 	.AddAttribute ("Port",
 					"Port on which we listen for incoming packets.",
 					UintegerValue (9),
@@ -49,21 +44,17 @@ Client::GetTypeId (void)
 					UintegerValue (40),
 					MakeUintegerAccessor (&Client::m_bufferSize),
 					MakeUintegerChecker<uint32_t> ())
-    .AddAttribute ("LossEnable", 
-                   "Whether to force loss or not to occur",
-                   BooleanValue (false),
-                   MakeBooleanAccessor (&Client::m_lossEnable),
-                   MakeBooleanChecker ())
-    .AddAttribute ("LossRate", 
-                   "Loss probability",
-                   DoubleValue (0.01),
-                   MakeDoubleAccessor (&Client::m_lossRate),
-                   MakeDoubleChecker<double> ())
 	.AddAttribute ("PacketNIP", 
                    "Number of packets in Frame",
                    UintegerValue(100),
                    MakeUintegerAccessor (&Client::m_packetNIP),
                    MakeUintegerChecker<uint32_t> ())
+    .AddTraceSource ("Rx", "A packet has been received",
+                     MakeTraceSourceAccessor (&Client::m_rxTrace),
+                     "ns3::Packet::TracedCallback")
+    .AddTraceSource ("RxWithAddresses", "A packet has been received",
+                     MakeTraceSourceAccessor (&Client::m_rxTraceWithAddresses),
+                     "ns3::Packet::TwoAddressTracedCallback")
 
 	;
 	return tid;
@@ -71,8 +62,10 @@ Client::GetTypeId (void)
 
 Frame::Frame ()
 {
-	for (uint32_t i=0; i<1000; i++)
+	for (uint32_t i=0; i<1000; i++){
 		m_packets[i] = 0;
+		m_send[i] = 0;
+	}
 }
 
 Frame::~Frame()
@@ -88,6 +81,7 @@ Client::Client ()
   	m_frameN = 0;
 	m_seqN = 0;
 	m_consumeN = 0;
+	m_sendN = 0;
 }
 
 Client::~Client ()
@@ -132,7 +126,7 @@ Client::StartApplication (void)
 
 	NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << "Client StartApplication" );
 	m_socket->SetRecvCallback (MakeCallback (&Client::HandleRead, this));
-	m_consumEvent = Simulator::Schedule ( Seconds ((double)1.5), &Client::FrameConsumer, this);
+	// m_consumEvent = Simulator::Schedule ( Seconds ((double)1.5), &Client::FrameConsumer, this);
 
 	
 }
@@ -146,7 +140,7 @@ Client::StopApplication ()
 		m_socket->SetRecvCallback (MakeNullCallback<void, Ptr<Socket> > ());
 	}
 
-	Simulator::Cancel (m_consumEvent);
+	// Simulator::Cancel (m_consumEvent);
 }
 
 void
@@ -168,12 +162,12 @@ Client::HandleRead (Ptr<Socket> socket)
 		uint32_t seqN = seqTs.GetSeq();
 		m_frameN = seqN/m_packetNIP;
 		NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Client received packet from " << InetSocketAddress::ConvertFrom (from).GetIpv4 () << " port " << InetSocketAddress::ConvertFrom (from).GetPort () << " frame : " << m_frameN << " seq : " << seqN );
-		PutFrameBuffer(m_frameN, seqN);
+		PutFrameBuffer(m_frameN, seqN, from, socket);
 	}
 }
 
 void 
-Client::PutFrameBuffer (uint32_t frameN, uint32_t seqN)
+Client::PutFrameBuffer (uint32_t frameN, uint32_t seqN, Address from, Ptr<Socket> socket)
 {
 	Frame frame;
 	if ( m_frameBuffer.find(frameN) != m_frameBuffer.end()) {
@@ -194,55 +188,58 @@ Client::PutFrameBuffer (uint32_t frameN, uint32_t seqN)
 			m_frameBuffer.insert(std::make_pair(frameN, frame));
 		}
 	}
+	if (frameN > m_sendN){
+		SendCheck(from, socket);
+	}
+	if (frameN > m_consumeN){
+		FrameConsumer();
+	}
+}
+
+
+void 
+Client::SendCheck(Address from, Ptr<Socket> socket)
+{
+	NS_LOG_INFO("Resend frame : " << m_sendN);
+	Frame frame = m_frameBuffer[m_sendN];
+	uint32_t count = 0;
+	for (uint32_t i=0; i<m_packetNIP; i++){
+		if(frame.m_packets[i] == 0){
+			Ptr<Packet> p = Create<Packet> (m_packetSize);
+			SeqTsHeader header;
+			header.SetSeq(m_packetNIP*m_sendN + i);
+			p->AddHeader(header);
+			socket->SendTo(p,0,from);
+			NS_LOG_INFO("Requested Packet  frame :"<< m_sendN << " seq : " << i );
+			m_frameBuffer[m_sendN].m_packets[i] = 2;
+			m_frameBuffer[m_sendN].m_send[count] = i;
+			count ++;
+		}
+	}
+	m_sendN++;
 }
 
 
 void
-Client::FrameConsumer (void)
+Client::FrameConsumer ()
 {
-	if( m_frameBuffer.size() > 0 ){
-		if (m_frameBuffer.find(m_consumeN) != m_frameBuffer.end()) {
-			// Frame exists -> check the packet -> request the pakcet
+	Frame frame = m_frameBuffer[m_consumeN];
 
-			int resend = 0;
-			Frame frame = m_frameBuffer[m_consumeN];
-			for (uint32_t i=0; i<m_packetNIP; i++){
-				if(frame.m_packets[i] == 0){
-					Ptr<Packet> p = Create<Packet> (m_packetSize);
-					
-					SeqTsHeader header;
-					header.SetSeq(m_packetNIP*m_consumeN + i);
-					p->AddHeader(header);
-
-					Ptr<UdpSocket> udpSocket = DynamicCast<UdpSocket> (m_socket);
-					udpSocket->SendTo (p, 0, m_peerAddress);
-
-					resend = 1;
-				}
-			}
-
-			if(resend==0){
-				m_frameBuffer.erase(m_consumeN++);
-			}
-			
-		} else {
-			// Frame does not exist -> request the frame
-
-			for (uint32_t i=0; i<m_packetNIP; i++){
-				Ptr<Packet> p = Create<Packet> (m_packetSize);
-					
-				SeqTsHeader header;
-				header.SetSeq(m_packetNIP*m_consumeN + i);
-				p->AddHeader (header);
-
-				Ptr<UdpSocket> udpSocket = DynamicCast<UdpSocket> (m_socket);
-				udpSocket->SendTo (p, 0, m_peerAddress);
-			}
-			
+	bool full = true;
+	for (uint32_t i=0; i<m_packetNIP; i++){
+		if(frame.m_packets[frame.m_send[i]] == 2){
+			full = false;
+			break;
+		}
+		else if (frame.m_send[i] == 1){
+			break;
 		}
 	}
-
-	m_consumEvent = Simulator::Schedule ( Seconds ((double)1.0), &Client::FrameConsumer, this);
+	if(full){
+		NS_LOG_INFO("Frame Consume" << m_consumeN);
+		m_frameBuffer.erase(m_consumeN);
+		m_consumeN++;
+	}	
 }
 
 
