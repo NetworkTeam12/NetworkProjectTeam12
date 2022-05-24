@@ -8,10 +8,9 @@ namespace ns3 {
 
 
 // Clinet
-ClientHelper::ClientHelper (Address address, uint16_t port)
+ClientHelper::ClientHelper (uint16_t port)
 {
 	m_factory.SetTypeId ("ns3::Client");
-	SetAttribute ("Remote", AddressValue (address));
 	SetAttribute ("Port", UintegerValue (port));
 }
 
