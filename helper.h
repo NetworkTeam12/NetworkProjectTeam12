@@ -12,7 +12,7 @@ namespace ns3 {
 class ClientHelper
 {
 public:
-	ClientHelper (Address ip, uint16_t port);
+	ClientHelper (uint16_t port);
 	void SetAttribute (std::string name, const AttributeValue &value);
 	ApplicationContainer Install (Ptr<Node> node) const;
 
