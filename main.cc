@@ -10,9 +10,12 @@ using namespace ns3;
 int 
 main(int argc, char*argv[])
 {
-	LogComponentEnable("StreamingClientApplication", LOG_LEVEL_ALL);		
-	LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_ALL);
-
+	// LogComponentEnable("StreamingClientApplication", LOG_LEVEL_ALL);		
+	// LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_ALL);
+	// LogComponentEnable("UdpSocketImpl", LOG_LEVEL_ALL);
+	LogComponentEnable("StreamingClientApplication", LOG_LEVEL_INFO);
+	LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_INFO);
+	
 	NodeContainer nodes;
 	nodes.Create(2);
 
@@ -29,22 +32,19 @@ main(int argc, char*argv[])
 	Ipv4AddressHelper addr;
 	addr.SetBase("10.1.1.0", "255.255.255.0");
 	Ipv4InterfaceContainer interfaces = addr.Assign(devices);
-	
-    	StreamerHelper echoServer(interfaces.GetAddress(0), 9);
-    	echoServer.SetAttribute("LossEnable", BooleanValue (true));
+	StreamerHelper echoServer(interfaces.GetAddress(0), 9);
+	echoServer.SetAttribute("LossEnable", BooleanValue (true));
 	ApplicationContainer serverApps(echoServer.Install(nodes.Get(1)));
 	serverApps.Start(Seconds(1.0));
-	serverApps.Stop(Seconds(3.0));
+	serverApps.Stop(Seconds(11.0));
 
-	ClientHelper echoClient(interfaces.GetAddress(1), 9);
-    echoClient.SetAttribute("LossEnable", BooleanValue (true));
+	ClientHelper echoClient(9);
 	ApplicationContainer clientApps(echoClient.Install(nodes.Get(0)));
 	clientApps.Start(Seconds(0.0));
-	clientApps.Stop(Seconds(4.0));
+	clientApps.Stop(Seconds(12.0));
 
-	
 	Simulator::Run();
-	Simulator::Stop(Seconds(4.0));
+	Simulator::Stop(Seconds(12.0));
 	Simulator::Destroy();
 
 	return 0;
