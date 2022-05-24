@@ -12,7 +12,7 @@
 #include "ns3/boolean.h"
 
 #include <cstdlib>
-
+#include <ctime>
 #include "streamer.h"
 
 namespace ns3 {
@@ -43,7 +43,7 @@ Streamer::GetTypeId (void)
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("StreamingFPS", 
                    "Streaming FPS",
-                   UintegerValue (90),
+                   UintegerValue (30),
                    MakeUintegerAccessor (&Streamer::m_fps),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("LossEnable", 
@@ -150,23 +150,27 @@ Streamer::Send (void)
 {
   NS_LOG_FUNCTION (this);
   NS_ASSERT (m_sendEvent.IsExpired ());
-
 	for (uint32_t i=0; i<m_packetNIP; i++){ 
     if (m_lossEnable){
-			double rand = std::rand() % 100; // random for 0-99
-			NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << "Streamer loss enable" );
-			if (rand < m_lossRate) continue;
+	    		srand(time(NULL));
+			double randN =  (rand() % 10000) / 100; // random for 0-99
+			// NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << "Streamer loss enable" );
+			if (randN < m_lossRate) {
+        NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) <<" frame : " << m_frameN << " seq : "  << m_seqN << " packet loss" );
+        m_seqN++;
+        continue;
+      }
 		}
 
 		Ptr<Packet> p = Create<Packet> (m_packetSize);
 
 		SeqTsHeader seqTs;	
-		seqTs.SetSeq (m_seqN++);
+		seqTs.SetSeq (m_seqN);
 		p->AddHeader (seqTs);
 		m_socket->Send (p);
     
 		NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Streamer sent "  <<  Ipv4Address::ConvertFrom (m_peerAddress) << " port " << m_peerPort << " frame : " << m_frameN << " seq : "  << m_seqN );
-
+    m_seqN++;
 		Address localAddress;
 	  m_socket->GetSockName (localAddress);
 
@@ -210,7 +214,7 @@ Streamer::ReSend (uint32_t seqN)
 	seqTs.SetSeq (seqN);
 	p->AddHeader (seqTs);
   m_socket->Send (p);
-NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Streamer resent packet, seq : "  << seqN );
+  NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Streamer resent packet, seq : "  << seqN );
   Address localAddress;
 	m_socket->GetSockName (localAddress);
 }
@@ -218,31 +222,32 @@ NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Streamer resent p
 void
 Streamer::Flowcontrol(uint32_t drop, uint32_t seqN){
   if(m_mode == 0){ // AIMD
-    if(drop){
+    if(drop == 1){
       m_fps = m_fps / 2;
-      if(m_fps < 10){
-        m_fps = 10;
+      if(m_fps < 30){
+        m_fps = 30;
       }
     }
     else{
       m_fps++;
     }
+    NS_LOG_INFO("Fps : " << m_fps);
   } 
   else if(m_mode == 1){ // Slow Start
-    if(drop){
+    if(drop == 1){
       if(m_slowstart){
         if(m_seqN -3 > seqN){
           m_slowstart = false;
           m_threshold = m_fps / 2;
-          m_fps = 10;
+          m_fps = 30;
         }
         else{
-          m_fps = 10;
+          m_fps = 30;
         }
       }
       else{
         m_threshold = m_fps / 2;
-        m_fps = 10;
+        m_fps = 30;
       }
     }
     else{
