@@ -5,7 +5,7 @@
 #include "ns3/event-id.h"
 #include "ns3/ptr.h"
 #include "ns3/address.h"
-
+#include "ns3/traced-callback.h"
 #include <map>
 
 
@@ -21,6 +21,7 @@ namespace ns3{
 			Frame ();
 			~Frame ();
 			int m_packets[1000];
+			int m_send[1000];
 	};
 
 
@@ -31,8 +32,9 @@ namespace ns3{
 			Client ();
 			virtual ~Client ();
 
-			void PutFrameBuffer (uint32_t frameN, uint32_t seqN);
-			void FrameConsumer (void);
+			void PutFrameBuffer (uint32_t frameN, uint32_t seqN, Address from, Ptr<Socket> socket);
+			void FrameConsumer ();
+			void SendCheck(Address from, Ptr<Socket> socket);
 
 		private:
 			virtual void StartApplication (void);
@@ -46,11 +48,11 @@ namespace ns3{
 			uint16_t m_peerPort;	// Destination port
 			uint32_t m_packetSize;	// Packet size
 			uint32_t m_bufferSize; 	// Frame buffer size
-			bool m_lossEnable;		// Loss Enable 
-			double m_lossRate;		// Loss Rate
 			uint32_t m_packetNIP; 	// Number of packets in Frame
 			uint32_t m_resume;		
 			uint32_t m_pause;
+			TracedCallback<Ptr<const Packet> > m_rxTrace;
+			TracedCallback<Ptr<const Packet>, const Address &, const Address &> m_rxTraceWithAddresses;
 
 			// Additional member variables
 			Ptr<Socket> m_socket;	// My socket
@@ -60,6 +62,7 @@ namespace ns3{
 			uint32_t m_seqN;	// Sequence number attached to the packet header
 			std::map<uint32_t, Frame> m_frameBuffer;	// Frame buffer -> (FrameIndex, Frame)
 			uint32_t m_consumeN; // The index of the frame that should now be consumed
+			uint32_t m_sendN;
 			
 			
 
