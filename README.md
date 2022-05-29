@@ -21,40 +21,41 @@
 # 옆에 본인 이름 적힌 항목 채워주시면 됩니다. 제출 시 지울 예정
 
 ## 1. Introduction 장지호
-- repository 소개
-- 팀플 과제 설명 등등 
+Project Subject: **Making an Application on NS-3**
+
+NS3를 통해 Reliability & Congestion Control을 직접 구현하고, 다양한 Network Enviorment & Topology 시나리오에 대해 시뮬레이션을 진행한다.
 
 <br>
 
 ## 2. Environment 장지호
-환경 소개 : ns-3 버전, docker 사용 등등
+- 환경 소개 : ns-3 버전, docker 사용 등등
+- OS: Ubuntu 18.04 LTS  
+- Simulator: NS3.29 
 
 
 <br>
 
 ## 3. Application Explanation
 ### 1) Introduction 장지호
-간략한 application 소개
+Reliability & Congestion Control을 구현하기 위해 client application과 server application에 대한 코드와 헤더 파일을 각각 작성했고, 추가로 application 동작에 사용되는 helper 코드도 함께 작성했다. 또한 우리가 구현한 application을 기반으로 다양한 시나리오를 시뮬레이션할 수 있는 main.cc 코드를 구축해놓았다.
 
 ### 2) Code Tree 장지호
-    ├─ app // Final output. Don't edit this folder.
-    │  ├─ css
-    │  ├─ img
-    │  ├─ js
-    │  └─ index.html
-    │
-    ├─ dev
-    │  ├─ js
-    │  ├─ scss
-    │  ├─ templates
-    │  └─ _theme.scss // Contains aesthetic variables. Edit this file.
-    │
-    ├─ project-hub-information.json // Project data. Edit this file.
-    ├─ gulpfile.js
-    ├─ streams.js
-    ├─ package.json
-    └─ README.md
-  이런식으로 ?
+    ns3.29
+    ├─ src
+    │  └─ application
+    │     ├─ model
+    │     │  ├─ client.cc
+    │     │  ├─ client.h
+    │     │  ├─ server.cc
+    │     │  └─ server.h
+    │     │
+    │     └─ helper
+    │        ├─ helper.cc
+    │        └─ helper.h
+    │ 
+    └─ scratch
+	    └─ main.cc
+
 
 ### 3) Streaming Logic 조하영 이규민
 #### A. Streamer
@@ -128,7 +129,7 @@
 ## 4. Running the Application
 ### 1) DockerHub Link 장지호
 결과물 docker hub link 올리기 
-
+*메인 작성 후
 
 ### 2) Running the App 이원규 강남구 
 ```
