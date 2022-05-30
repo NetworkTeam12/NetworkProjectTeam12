@@ -21,14 +21,13 @@
 # 옆에 본인 이름 적힌 항목 채워주시면 됩니다. 제출 시 지울 예정
 
 ## 1. Introduction 장지호
-Project Subject: **Making an Application on NS-3**
+Project Subject: **Reliability & Congestion Control**
 
-NS3를 통해 Reliability & Congestion Control을 직접 구현하고, 다양한 Network Enviorment & Topology 시나리오에 대해 시뮬레이션을 진행한다.
+NS3를 통해 Reliability & Congestion Control을 직접 구현하고, 다양한 Network Environment & Topology 시나리오에 대해 시뮬레이션을 진행한다.
 
 <br>
 
 ## 2. Environment 장지호
-- 환경 소개 : ns-3 버전, docker 사용 등등
 - OS: Ubuntu 18.04 LTS  
 - Simulator: NS3.29 
 
