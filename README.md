@@ -120,8 +120,11 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 
 ### 6) Main Function & Network Topology 이원규, 강남구
 
-
 #####    Topol 1.
+
+        N1 - N2    p2p
+
+#####    Topol 2.
 
         N1                 
            \                
@@ -129,9 +132,6 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
            /                
         N2                  
 
-#####    Topol 2.
-
-        N1 - N2    p2p
 
 #####    Topol 3.
 	
