@@ -6,7 +6,7 @@
 - mainfile.cc 는 /scratch/에 넣어주시고
 
 2.
-- /src/application/wscript 에서 obj.source = [ 안에 'model/client.cc', 'model/server.cc', 'helper/helper.cc'] 추가해주시고
+- /src/application/wscript 에서 module.source = [ 안에 'model/client.cc', 'model/server.cc', 'helper/helper.cc'] 추가해주시고
 - headers.source = [ 안에는  'model/client.h', 'model/server.h', 'helper/helper.h'] 추가해주시면 됩니다
 
 3.
