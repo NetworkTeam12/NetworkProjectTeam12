@@ -255,9 +255,8 @@ uint32_t bufferSize = 40;
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171259482-bb9c2ac1-bfe3-4435-8980-22fdba7c4c3c.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171259498-48e87e44-fa9d-4a2f-9477-e9e503776e0c.png" width="250" height="250"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171259521-e9c2bd5e-d24b-4857-bea0-4682d5856db7.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171259726-a226b40c-43a3-439a-99f4-16f191a883a9.png" width="250" height="250"/>
 </p>
-
 	
 ## Topology2 ( WIFI )
 ##### base( 	uint32_t fps = 30; 
