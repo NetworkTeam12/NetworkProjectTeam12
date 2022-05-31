@@ -293,6 +293,28 @@ uint32_t bufferSize = 40;
 </p>	
 
 
+## Topology3 ( Y )
+##### udp 1-0, 0-1, 1-1 (no loss)
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171266111-f1426a26-98ed-4edb-9450-dcbc71a6a807.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171266095-6bb01e6e-4618-4d42-9c2e-899857389b7b.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171266138-3801fa2c-5f11-4d51-98af-2aef4749a5d0.png" width="250" height="250"/>
+</p>
+	
+##### udp 1-0, 0-1, 1-1 (loss 0.3)
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171266381-a1a63406-c509-4707-9487-5fbbfdad187a.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171266407-267bdfec-a6f6-4d3b-8374-b3cf010ba7cf.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171266436-39077678-af76-42e0-aea4-008464779105.png" width="250" height="250"/>
+</p>	
+
+##### tcp 1-0/ no loss, loss 0.3
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171265994-54ca724c-c716-45e6-b667-8dfd57af7f47.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171266021-50a20e1e-c262-445d-b247-0768ab236386.png" width="250" height="250"/>
+</p>	
+
+
 
 ### 4) Video Link 장지호
 최종 발표 비디오
