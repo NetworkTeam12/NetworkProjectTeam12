@@ -1,7 +1,7 @@
 # NetworkProjectTeam12
 # 파일 구성 방법
 1.
-- client.cc, client.h, server.cc, server.h : /src/applications/model/ directory 안에 넣어주시고
+- client.cc, client.h, streamer.cc streamer.h : /src/applications/model/ directory 안에 넣어주시고
 - helper.cc, helper.h : /src/applictions/helper/ directory 안에 넣어주시고
 - mainfile.cc 는 /scratch/에 넣어주시고
 
