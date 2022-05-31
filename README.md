@@ -120,11 +120,9 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 
 ### 6) Main Function & Network Topology 이원규, 강남구
 
+#### CMD Attribute 설명
 	
-
-#### Command Line Argument 설명
-	
-##### 1. Arguments for  Streamer
+##### 1. Attributes for  Streamer
 - PacketSize : 패킷 사이즈
 - PackletNip : 프레임 당 패킷 개수
 - Fps : 스트리밍 FPS
@@ -134,12 +132,12 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 - ThresHold : Select threshold
 
 
-##### 2. Arguments for Client
+##### 2. Attributes for Client
 - PacketSize : 패킷 사이즈
 - PackletNip : 프레임 당 패킷 개수
 - BufferSize : The frame buffer size
 	
-##### 3. Arguments for OnOffAppl (only for subflow,  Only when subflow exists)
+##### 3. Attributes for OnOffAppl (only for subflow,  Only when subflow exists)
 - protocol : protocol of sub flow if Tcp  type true if Udp type false (boolean type)
 - ontime : subflow's ontime
 - offtime : subflow's offtime
@@ -340,24 +338,16 @@ uint32_t bufferSize = 40;
 </p>	
 
 ## Topology4 ( CSMA )
-##### udp 1-0, 0-1, 1-1 (no loss)
+##### tcp 1-1, udp 1-1/ no loss
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171266111-f1426a26-98ed-4edb-9450-dcbc71a6a807.png" width="250" height="250"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171266095-6bb01e6e-4618-4d42-9c2e-899857389b7b.png" width="250" height="250"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171266138-3801fa2c-5f11-4d51-98af-2aef4749a5d0.png" width="250" height="250"/>
-</p>
-	
-##### udp 1-0, 0-1, 1-1 (loss 0.3)
-<p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171266381-a1a63406-c509-4707-9487-5fbbfdad187a.png" width="250" height="250"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171266407-267bdfec-a6f6-4d3b-8374-b3cf010ba7cf.png" width="250" height="250"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171266436-39077678-af76-42e0-aea4-008464779105.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171275440-2e24ffd0-143d-4efd-829a-7a9e878b98e9.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171275461-260d2fbb-f260-484f-9062-fc3b29637966.png" width="250" height="250"/>
 </p>	
 
-##### tcp 1-0/ no loss, loss 0.3
+##### tcp 1-1, udp 1-1/ loss 0.3
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171265994-54ca724c-c716-45e6-b667-8dfd57af7f47.png" width="250" height="250"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171266021-50a20e1e-c262-445d-b247-0768ab236386.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171275488-9f8513f6-610f-4a0e-acea-fd1912ee54ac.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171275522-f8715714-5ea5-4e5d-80fc-98ef3706650c.png" width="250" height="250"/>
 </p>	
 
 
