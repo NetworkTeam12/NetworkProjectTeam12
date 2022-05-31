@@ -240,6 +240,25 @@ uint32_t bufferSize = 40;
 	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
 </p>
 	
+##### 	retry 
+	base >>
+	uint32_t fps = 30; 			//30
+	uint32_t packetSize = 100; 	//30
+	uint32_t packetNip = 100; 	//30
+	bool lossEnable = false;	//false
+	double lossRate = 30;	 	//0.01
+	uint32_t mode = 1; 			//0
+	uint32_t thresHold = 200; 	//200
+	uint32_t bufferSize = 40; 	//40	
+	
+	no loss, loss 0.1, 0.3
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171256552-f8a202aa-3b49-4bff-ad97-c4c829fd53b3.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
+</p>
+		
+	
 ## Topology2 ( WIFI )
 ##### base( 	uint32_t fps = 30; 
 	uint32_t packetSize = 100; 
