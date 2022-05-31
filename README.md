@@ -165,7 +165,12 @@ threshold 50, 500
 	<img src="https://user-images.githubusercontent.com/28288186/171216455-dd42ad40-fc9f-4854-b4e0-ed0b1c1de368.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171216525-1981cef7-ed68-4f05-a8c1-363662536846.png" width="250" height="250"/>
 </p>
-
+	
+lossRate 0.01, 0.1
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171214248-19eda640-75c5-41e4-b832-dec8ad18bbdd.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171218804-2ae563fb-6a32-4129-8667-ecca46f75968.png" width="250" height="250"/>
+</p>
 	
 ### FPS test
 #### parameter(삭제예정)
