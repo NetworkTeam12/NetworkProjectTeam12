@@ -137,40 +137,38 @@ $ ./waf --run scratch/main
 
 
 ### 3) Result 이원규 강남구 
-    1. topology에 wifi, p2p 구현 필요.
-    2. 조절할 변수 : pkt size, streaming fps, loss enalble, lossrate, 
-    3. 기존 과제에 사용된 토폴로지
+### sequenec number & resend count test
+parameter(삭제예정): packet size =30, packet nip = 30, mode 0, buffer size = 40 
+	
+packet nip = 10, 30, 100
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171214248-19eda640-75c5-41e4-b832-dec8ad18bbdd.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171215550-a70c5495-8b78-48b5-b818-0eb125f072c7.png" width="250" height="250"/>
+</p>
+	
+packet size = 10, 30, 100
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171215782-43a27547-00e3-4003-a89e-9e1e7f8d9d0e.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171215817-c252ff22-3faf-4670-965c-20c7172bccf1.png" width="250" height="250"/>
+</p>
+	
+mode 0, 1
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171216066-9f0c7878-4535-44b5-86d0-47b5b31aa3ea.png" width="250" height="250"/>
+</p>
+	
+threshold 50, 500
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171216455-dd42ad40-fc9f-4854-b4e0-ed0b1c1de368.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171216525-1981cef7-ed68-4f05-a8c1-363662536846.png" width="250" height="250"/>
+</p>
 
-    각 Topol에서 변수를 적당히 조절하며 3~4개의 케이스를 생성.
-
-    Topol 1.
-
-        N1                   
-           \                              
-              N3 - N4    
-           /                
-        N2                 
-
-    Topol 2.
-
-        N1 - N2    1. 
-
-    Topol 3.
-        - - csma  - -       1. 스위치의 버퍼양이나 전송속도를 조절해서 relability를 체크.
-        |   |   |   |
-        N1  N2  N3  N4
-
-    Topol 4.
-        
-       Wifi 192.168.1.0
-   
-          AP
-        *    *
-        |    |
-        n1   n2
-    
+	
 ### FPS test
-#### parameter
+#### parameter(삭제예정)
 uint32_t fps = 30; 			
 uint32_t packetSize = 100; 
 uint32_t packetNip = 100; 
