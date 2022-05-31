@@ -137,7 +137,7 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 - PackletNip : 프레임 당 패킷 개수
 - BufferSize : The frame buffer size
 	
-##### 3. Attributes for OnOffAppl (only for subflow)
+##### 3. Attributes for OnOffAppl (only for subflow,  Only when subflow exists)
 - protocol : protocol of sub flow if Tcp  type true if Udp type false (boolean type)
 - ontime : subflow's ontime
 - offtime : subflow's offtime
