@@ -130,7 +130,7 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 
 ### 2) Running the App 이원규 강남구 
 ```
-$ ./waf scratch TeamProject 
+$ ./waf --run scratch/main
 ```
 등등 
 
