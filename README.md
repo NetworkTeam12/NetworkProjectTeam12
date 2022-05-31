@@ -140,29 +140,29 @@ $ ./waf --run scratch/main
 
 ##### mode 0 fps 10, 20, 30
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171199940-ed9563a1-4555-43cd-abb4-e5cab3accaa2.png" width="300" height="300"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171200357-6f95a087-7423-4fdf-9f94-5fbc48f7f177.png" width="300" height="300"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171201119-f89b849c-8210-44df-83a8-ed02fa852221.png" width="300" height="300"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171199940-ed9563a1-4555-43cd-abb4-e5cab3accaa2.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171200357-6f95a087-7423-4fdf-9f94-5fbc48f7f177.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171201119-f89b849c-8210-44df-83a8-ed02fa852221.png" width="250" height="250"/>
 </p>
 <br>
 	
 ##### mode 1 fps 10, 20, 30
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171201270-62bf41a3-2f62-4042-9f7d-2b4e822d13d1.png" width="300" height="300"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171201428-f741b8e6-01b3-4038-a8de-cea969bcbc38.png" width="300" height="300"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="300" height="300"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171201270-62bf41a3-2f62-4042-9f7d-2b4e822d13d1.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171201428-f741b8e6-01b3-4038-a8de-cea969bcbc38.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="250" height="250"/>
 </p>
 
 ##### loss 0.01, 0.1 (mode 1 fps 30)
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="300" height="300"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171209642-813d9980-f512-451a-b686-147270d9084a.png" width="300" height="300"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171209642-813d9980-f512-451a-b686-147270d9084a.png" width="250" height="250"/>
 </p>
 	
 ##### buf 40, buf 100 (mode 1 fps 30)
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="300" height="300"/>
-	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="300" height="300"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
 </p>
 	
 	
