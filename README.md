@@ -175,6 +175,7 @@ $ ./waf scratch TeamProject
 - 5/17~5/19 : Development of SubTeam 1
 - 5/20 : Development of SubTeam 2
 - 5/21 : Issue 해결 (이규민)
+- 5/22 : Main Function & Topology Meeting of SubTeam 3
 - 5/23 : Issue 해결 (조하영)
 - 5/24 : Issue 해결 (이규민)
 - 5/23~5/31 : Development of SubTeam 3
