@@ -137,8 +137,38 @@ $ ./waf --run scratch/main
 
 
 ### 3) Result 이원규 강남구 
+    1. topology에 wifi, p2p 구현 필요.
+    2. 조절할 변수 : pkt size, streaming fps, loss enalble, lossrate, 
+    3. 기존 과제에 사용된 토폴로지
 
-	
+    각 Topol에서 변수를 적당히 조절하며 3~4개의 케이스를 생성.
+
+    Topol 1.
+
+        N1                   
+           \                              
+              N3 - N4    
+           /                
+        N2                 
+
+    Topol 2.
+
+        N1 - N2    1. 
+
+    Topol 3.
+        - - csma  - -       1. 스위치의 버퍼양이나 전송속도를 조절해서 relability를 체크.
+        |   |   |   |
+        N1  N2  N3  N4
+
+    Topol 4.
+        
+       Wifi 192.168.1.0
+   
+          AP
+        *    *
+        |    |
+        n1   n2
+    
 ### FPS test
 #### parameter
 uint32_t fps = 30; 			
