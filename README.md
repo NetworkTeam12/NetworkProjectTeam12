@@ -1,9 +1,9 @@
 # NetworkProjectTeam12
 # 파일 구성 방법
 1.
-- client.cc, client.h, streamer.cc streamer.h : /src/applications/model/ directory 안에 넣어주시고
-- helper.cc, helper.h : /src/applictions/helper/ directory 안에 넣어주시고
-- mainfile.cc 는 /scratch/에 넣어주시고
+- client.cc, client.h, streamer.cc streamer.h : /src/applications/model/ 에 넣어주시고
+- helper.cc, helper.h : /src/applictions/helper/ 에 넣어주시고
+- mainfile.cc 는 /scratch/ 에 넣어주시고
 
 2.
 - /src/application/wscript 에서 module.source = [ 안에 'model/client.cc', 'model/streamer.cc', 'helper/helper.cc'] 추가해주시고
@@ -13,8 +13,7 @@
 - ns-3.29$ ./waf clean
 - ns-3.29$ ./waf configure --build-profile=debug
 - ns-3.29$ ./waf
-- ns-3.29$ ./waf --run scratch/mainfile
-- 하시면 됩니다 
+- ns-3.29$ ./waf --run scratch/main
 
 
 
