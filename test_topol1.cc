@@ -22,9 +22,9 @@ main(int argc, char*argv[])
     */
 
    CommandLine cmd;
-   uint32_t pktsize;
+   uint32_t maxpkt=10000000;// 1,000,000
    // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
-   cmd.AddValue("pktsize","packet size",pktsize);
+   cmd.AddValue("pktsize","packet size",maxpkt);
    cmd.Parse(argc,argv);
 
     std::string datarate="10Mbps";
@@ -32,7 +32,7 @@ main(int argc, char*argv[])
 
     // logs
    //LogComponentEnable("main_project", LOG_LEVEL_ALL);
-   
+
     // node container
    NodeContainer nodes;
    nodes.Create(4);
@@ -78,6 +78,23 @@ main(int argc, char*argv[])
 
 //========================================
     //Appl. abstaction.
+    StreamerHelper streamer(interfaces1.GetAddress(0),9);//adress,, #port
+    streamer.SetAttribute("MaxPackets",UintegerValue(maxpkt));
+    streamer.SetAttribute("Interval",TimeValue(Seconds(1.0)));
+
+    ClientHelper client(9);
+
+    ApplicationContainer streamerapp(streamer.Install(n0n1.Get(0)));
+    ApplicationContainer clientapp(client.Install(n0n1.Get(1)));
+
+    streamerapp.Start(Seconds(1.0));
+    clientapp.Start(Seconds(2.0));
+    streamerapp.Stop(Seconds(10.0));
+    clientapp.Stop(Seconds(10.0));
+
+
+
+    
 //========================================
     
     Simulator::Run();
