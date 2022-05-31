@@ -14,16 +14,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-// Network topology
-//
-//       n0    n1   n2   n3
-//       |     |    |    |
-//       =================
-//              LAN
-//
-// - CBR/UDP flows from n0 to n1 and from n3 to n0
-// - DropTail queues
-// - Tracing of queues and packet receptions to file "csma-one-subnet.tr"
+
 
 #include <iostream>
 #include <fstream>
@@ -39,46 +30,40 @@ NS_LOG_COMPONENT_DEFINE("topology3");
 
 int main(int argc, char *argv[])
 {
-    //
-    // Users may find it convenient to turn on explicit debugging
-    // for selected modules; the below lines suggest how to do this
-    //
+
     LogComponentEnable("StreamingClientApplication", LOG_LEVEL_INFO);
     LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_INFO);
-    //
-    // Allow the user to override any of the defaults and the above Bind() at
-    // run-time, via command-line arguments
-    //
+
     CommandLine cmd;
 
-  uint32_t fps = 30;         // 30
-  uint32_t packetSize = 100; // 100
-  uint32_t packetNip = 100;  // 100
-  bool lossEnable = false;   // false
-  double lossRate = 0.01;    // 0.01
-  uint32_t mode = 0;         // 0
-  uint32_t thresHold = 200;  // 200
-  uint32_t bufferSize = 40;  // 40
-  uint32_t isTcp=1;
+    uint32_t fps = 30;         // 30
+    uint32_t packetSize = 100; // 100
+    uint32_t packetNip = 100;  // 100
+    bool lossEnable = false;   // false
+    double lossRate = 0.01;    // 0.01
+    uint32_t mode = 0;         // 0
+    uint32_t thresHold = 200;  // 200
+    uint32_t bufferSize = 40;  // 40
+    uint32_t isTcp = 1;
     uint32_t cmd_ontime = 1;
-  uint32_t cmd_offtime = 1;
-    std::string cmd_socketFactory = "ns3::TcpSocketFactory"; // default = tcpsocketfactory
-    // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
-  cmd.AddValue("PacketSize", "PacketSize", packetSize);
-  cmd.AddValue("PacketNIP", "Number of packets in Frame", packetNip);
-  cmd.AddValue("Fps", "StreamingFPS", fps);
-  cmd.AddValue("LossEn", "Forced Packet Loss on/off", lossEnable);
-  cmd.AddValue("LossRate", "Loss probability", lossRate);
-  cmd.AddValue("Mode", "Select congestion control mode", mode);
-  cmd.AddValue("ThresHold", "Select threshold", thresHold);
-  cmd.AddValue("BufferSize", "The frame buffer size", bufferSize);
-  cmd.AddValue("ontime","subflow's ontime",cmd_ontime);
-  cmd.AddValue("offtime","subflow's offtime",cmd_offtime);
+    uint32_t cmd_offtime = 1;
+    //std::string cmd_socketFactory = "ns3::TcpSocketFactory"; // default = tcpsocketfactory
+                                                             // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
+    cmd.AddValue("PacketSize", "PacketSize", packetSize);
+    cmd.AddValue("PacketNIP", "Number of packets in Frame", packetNip);
+    cmd.AddValue("Fps", "StreamingFPS", fps);
+    cmd.AddValue("LossEn", "Forced Packet Loss on/off", lossEnable);
+    cmd.AddValue("LossRate", "Loss probability", lossRate);
+    cmd.AddValue("Mode", "Select congestion control mode", mode);
+    cmd.AddValue("ThresHold", "Select threshold", thresHold);
+    cmd.AddValue("BufferSize", "The frame buffer size", bufferSize);
+    cmd.AddValue("ontime", "subflow's ontime", cmd_ontime);
+    cmd.AddValue("offtime", "subflow's offtime", cmd_offtime);
 
     cmd.Parse(argc, argv);
-    std::string cmd_socketFactory = isTcp?"ns3::TcpSocketFactory":"ns3::UdpSocketFactory"; // default = tcpsocketfactory
-  std::string cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_ontime) + "])";
-  std::string cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_offtime) + "])";
+    std::string cmd_socketFactory = isTcp ? "ns3::TcpSocketFactory" : "ns3::UdpSocketFactory"; // default = tcpsocketfactory
+    std::string cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_ontime) + "])";
+    std::string cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_offtime) + "])";
     //
     // Explicitly create the nodes required by the topology (shown above).
     //
@@ -157,30 +142,16 @@ int main(int argc, char *argv[])
     clientapp.Start(Seconds(0.));
     clientapp.Stop(Seconds(30.));
     NS_LOG_INFO("Configure Tracing.");
-    //
-    // Configure ascii tracing of all enqueue, dequeue, and NetDevice receive
-    // events on all devices.  Trace output will be sent to the file
-    // "csma-one-subnet.tr"
-    //
+
+
     AsciiTraceHelper ascii;
     csma.EnableAsciiAll(ascii.CreateFileStream("csma-one-subnet.tr"));
 
-    //
-    // Also configure some tcpdump traces; each interface will be traced.
-    // The output files will be named:
-    //
-    //     csma-one-subnet-<node ID>-<device's interface index>.pcap
-    //
-    // and can be read by the "tcpdump -r" command (use "-tt" option to
-    // display timestamps correctly)
-    //
+
     csma.EnablePcapAll("csma-one-subnet", false);
-    //
-    // Now, do the actual simulation.
-    //
+
 
     Simulator::Run();
     Simulator::Stop(Seconds(30.0));
     Simulator::Destroy();
-
 }

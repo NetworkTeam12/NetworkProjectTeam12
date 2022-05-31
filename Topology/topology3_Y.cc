@@ -1,5 +1,3 @@
-// This code is based on HW week8
-// This code is week6_skeleton.cc
 
 #include <fstream>
 #include "ns3/core-module.h"
@@ -12,30 +10,17 @@ using namespace ns3;
 
 NS_LOG_COMPONENT_DEFINE("topology1");
 
-
-
 int main(int argc, char *argv[])
 {
   LogComponentEnable("StreamingClientApplication", LOG_LEVEL_INFO);
   LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_INFO);
   NS_LOG_INFO("Start Create nodes.");
-  
+
   uint32_t cmd_ontime = 1;
   uint32_t cmd_offtime = 1;
   CommandLine cmd;
-  
 
-  int subFlowRate = 0.5* 1000 * 1000;             // subNode source rate in b/s
-  std::string cmd_socketFactory = "ns3::TcpSocketFactory"; // default = tcpsocketfactory
-  //cmd_socketFactory = "ns3::UdpSocketFactory";
-
-  std::string cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_ontime) + "])";
-  //cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=3])";
-
-  std::string cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_offtime) + "])";
-  //cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=3])";
-  // Create nodes
-  // NS_LOG_INFO ("Create nodes.");
+  int subFlowRate = 0.5 * 1000 * 1000; // subNode source rate in b/s
 
   uint32_t fps = 30;         // 30
   uint32_t packetSize = 100; // 100
@@ -45,7 +30,7 @@ int main(int argc, char *argv[])
   uint32_t mode = 0;         // 0
   uint32_t thresHold = 200;  // 200
   uint32_t bufferSize = 40;  // 40
-
+  uint32_t isTcp = 1;
   // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
   cmd.AddValue("PacketSize", "PacketSize", packetSize);
   cmd.AddValue("PacketNIP", "Number of packets in Frame", packetNip);
@@ -55,17 +40,20 @@ int main(int argc, char *argv[])
   cmd.AddValue("Mode", "Select congestion control mode", mode);
   cmd.AddValue("ThresHold", "Select threshold", thresHold);
   cmd.AddValue("BufferSize", "The frame buffer size", bufferSize);
+  cmd.AddValue("ontime", "subflow's ontime", cmd_ontime);
+  cmd.AddValue("offtime", "subflow's offtime", cmd_offtime);
 
   cmd.Parse(argc, argv);
+  std::string cmd_socketFactory = isTcp ? "ns3::TcpSocketFactory" : "ns3::UdpSocketFactory"; // default = tcpsocketfactory
+  std::string cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_ontime) + "])";
+  std::string cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_offtime) + "])";
 
-  // We will use nSrc1
   Ptr<Node> nSrc1 = CreateObject<Node>();
   Ptr<Node> nSrc2 = CreateObject<Node>();
   Ptr<Node> nRtr = CreateObject<Node>();
   Ptr<Node> nDst = CreateObject<Node>();
 
-  // nodes(0)
-  // Streamer will be set on nSrc1 node.
+
   NodeContainer nodes = NodeContainer(nSrc1, nSrc2, nRtr, nDst);
 
   NodeContainer nSrc1nRtr = NodeContainer(nSrc1, nRtr);
@@ -84,7 +72,7 @@ int main(int argc, char *argv[])
   NetDeviceContainer dSrc2dRtr = p2p.Install(nSrc2nRtr);
   NetDeviceContainer dRtrdDst = p2p.Install(nRtrnDst);
 
-  // Add IP addresses
+
   NS_LOG_INFO("Assign IP Addresses.");
   Ipv4AddressHelper ipv4;
   ipv4.SetBase("10.1.1.0", "255.255.255.0");
@@ -94,16 +82,14 @@ int main(int argc, char *argv[])
   ipv4.SetBase("10.1.3.0", "255.255.255.0");
   Ipv4InterfaceContainer iRtriDst = ipv4.Assign(dRtrdDst);
 
-  // Set up the routing tables
+
   Ipv4GlobalRoutingHelper::PopulateRoutingTables();
 
-  // Implement TCP & UDP sinks to the destinations
-  // Remove 1 sink.
+
   uint16_t PortStream = 8080;
   uint16_t sinkPort = 9090;
   Address sinkAddressStreamer(InetSocketAddress(iRtriDst.GetAddress(1), PortStream)); // TODO
   Address sinkAddress(InetSocketAddress(iRtriDst.GetAddress(1), sinkPort));
-
 
   ClientHelper client(PortStream);
   client.SetAttribute("PacketSize", UintegerValue(packetSize));
@@ -121,8 +107,6 @@ int main(int argc, char *argv[])
   sinkApp.Start(Seconds(0.));
   sinkApp.Stop(Seconds(30.));
 
-
-
   StreamerHelper streamer(iRtriDst.GetAddress(1), PortStream); // address, port num.
   streamer.SetAttribute("LossEnable", BooleanValue(lossEnable));
   streamer.SetAttribute("LossRate", DoubleValue(lossRate));
@@ -135,8 +119,6 @@ int main(int argc, char *argv[])
   ApplicationContainer streamApp(streamer.Install(nSrc1));
   streamApp.Start(Seconds(0.));
   streamApp.Stop(Seconds(30.));
-
-
 
   // Flow2
   OnOffHelper onoff(cmd_socketFactory, sinkAddress);
