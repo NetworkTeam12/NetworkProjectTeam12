@@ -120,6 +120,28 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 
 ### 6) Main Function & Network Topology 이원규, 강남구
 
+#### CMD Attribute 설명
+	
+##### Attributes for  Streamer
+- PacketSize : 패킷 사이즈
+- PackletNip : 프레임 당 패킷 개수
+- Fps : 스트리밍 FPS
+- LossEn : Forced Packet Loss on/off
+- LossRate : Loss probability
+- Mode : Select congestion control mode
+- ThresHold : Select threshold
+
+
+##### Attributes for Client
+- PacketSize : 패킷 사이즈
+- PackletNip : 프레임 당 패킷 개수
+- BufferSize : The frame buffer size
+	
+##### Attributes for OnOffAppl (only for subflow)
+- protocol : protocol of sub flow if Tcp  type true if Udp type false (boolean type)
+- ontime : subflow's ontime
+- offtime : subflow's offtime
+
 #####    Topol 1.
 
         N1 - N2    p2p
