@@ -7,41 +7,37 @@
 #include <iostream>
 using namespace ns3;
 
-
-int 
-main(int argc, char*argv[])
+int main(int argc, char *argv[])
 {
-	// LogComponentEnable("StreamingClientApplication", LOG_LEVEL_ALL);		
-	// LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_ALL);
-	// LogComponentEnable("UdpSocketImpl", LOG_LEVEL_ALL);
+
 	LogComponentEnable("StreamingClientApplication", LOG_LEVEL_DEBUG);
 	LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_DEBUG);
 
 	CommandLine cmd;
-	uint32_t fps = 30; 			//30
-	uint32_t packetSize = 100; 	//100
-	uint32_t packetNip = 100; 	//100
-	bool lossEnable = false;	//false
-	double lossRate = 0.01;	 	//0.01
-	uint32_t mode = 0; 			//0
-	uint32_t thresHold = 200; 	//200
-	uint32_t bufferSize = 40; 	//40
+	uint32_t fps = 30;		   // 30
+	uint32_t packetSize = 100; // 100
+	uint32_t packetNip = 100;  // 100
+	bool lossEnable = false;   // false
+	double lossRate = 0.01;	   // 0.01
+	uint32_t mode = 0;		   // 0
+	uint32_t thresHold = 200;  // 200
+	uint32_t bufferSize = 40;  // 40
 
 	// cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
-	cmd.AddValue("PacketSize","PacketSize", packetSize);
-	cmd.AddValue("PacketNIP","Number of packets in Frame", packetNip);
-	cmd.AddValue("Fps","StreamingFPS", fps);
-	cmd.AddValue("LossEn","Forced Packet Loss on/off", lossEnable);
-	cmd.AddValue("LossRate","Loss probability", lossRate);
-	cmd.AddValue("Mode","Select congestion control mode", mode);
-	cmd.AddValue("ThresHold","Select threshold", thresHold);
-	cmd.AddValue("BufferSize","The frame buffer size", bufferSize);
+	cmd.AddValue("PacketSize", "PacketSize", packetSize);
+	cmd.AddValue("PacketNIP", "Number of packets in Frame", packetNip);
+	cmd.AddValue("Fps", "StreamingFPS", fps);
+	cmd.AddValue("LossEn", "Forced Packet Loss on/off", lossEnable);
+	cmd.AddValue("LossRate", "Loss probability", lossRate);
+	cmd.AddValue("Mode", "Select congestion control mode", mode);
+	cmd.AddValue("ThresHold", "Select threshold", thresHold);
+	cmd.AddValue("BufferSize", "The frame buffer size", bufferSize);
 
-	cmd.Parse(argc,argv);
+	cmd.Parse(argc, argv);
 
-    std::string datarate="10Mbps";
-    std::string delay="10us";
-	
+	std::string datarate = "10Mbps";
+	std::string delay = "10us";
+
 	NodeContainer nodes;
 	nodes.Create(2);
 
@@ -59,29 +55,25 @@ main(int argc, char*argv[])
 	addr.SetBase("10.1.1.0", "255.255.255.0");
 	Ipv4InterfaceContainer interfaces = addr.Assign(devices);
 
-	StreamerHelper echoServer(interfaces.GetAddress(0), 9);
-	echoServer.SetAttribute("LossEnable", BooleanValue (lossEnable));
-	echoServer.SetAttribute("LossRate",DoubleValue(lossRate));
+	StreamerHelper streamer(interfaces.GetAddress(0), 9);
+	streamer.SetAttribute("LossEnable", BooleanValue(lossEnable));
+	streamer.SetAttribute("LossRate", DoubleValue(lossRate));
+	streamer.SetAttribute("PacketSize", UintegerValue(packetSize));
+	streamer.SetAttribute("PacketNIP", UintegerValue(packetNip));
+	streamer.SetAttribute("StreamingFPS", UintegerValue(fps));
+	streamer.SetAttribute("Mode", UintegerValue(mode));
+	streamer.SetAttribute("threshold", UintegerValue(thresHold));
 
-	echoServer.SetAttribute("PacketSize",UintegerValue(packetSize));
-	echoServer.SetAttribute("PacketNIP",UintegerValue(packetNip));
-	echoServer.SetAttribute("StreamingFPS",UintegerValue(fps));
+	ApplicationContainer streamerApps(streamer.Install(nodes.Get(1)));
+	streamerApps.Start(Seconds(1.0));
+	streamerApps.Stop(Seconds(29.0));
 
-	echoServer.SetAttribute("Mode",UintegerValue(mode));
-    echoServer.SetAttribute("threshold",UintegerValue(thresHold));
-	
+	ClientHelper client(9);
+	client.SetAttribute("PacketSize", UintegerValue(packetSize));
+	client.SetAttribute("PacketNIP", UintegerValue(packetNip));
+	client.SetAttribute("BufferSize", UintegerValue(bufferSize));
 
-	ApplicationContainer serverApps(echoServer.Install(nodes.Get(1)));
-	serverApps.Start(Seconds(1.0));
-	serverApps.Stop(Seconds(29.0));
-
-	ClientHelper echoClient(9);
-	echoClient.SetAttribute("PacketSize",UintegerValue(packetSize));
-	echoClient.SetAttribute("PacketNIP",UintegerValue(packetNip));
-
-    echoClient.SetAttribute("BufferSize",UintegerValue(bufferSize));
-
-	ApplicationContainer clientApps(echoClient.Install(nodes.Get(0)));
+	ApplicationContainer clientApps(client.Install(nodes.Get(0)));
 	clientApps.Start(Seconds(0.0));
 	clientApps.Stop(Seconds(30.0));
 
