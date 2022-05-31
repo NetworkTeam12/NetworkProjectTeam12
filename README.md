@@ -138,8 +138,38 @@ $ ./waf --run scratch/main
 
 ### 3) Result 이원규 강남구 
 ### sequenec number & resend count test
-parameter(삭제예정): packet size =30, packet nip = 30, mode 0, buffer size = 40 
 	
+
+    Topol 1.
+
+        N1                 
+           \                
+              N3- N4     N1-N4 Streamer& Client  N2-N4: UDP or TCP 
+           /                
+        N2                  
+
+    Topol 2.
+
+        N1 - N2    p2p
+
+    Topol 3.
+	
+	 Wifi 192.168.1.0
+   			
+          AP
+        *    *
+        |    |
+        n1   n2
+
+    Topol 4.
+        
+        - - csma  - -       N1-N2: OnOff&sink
+        |   |   |   |	    N3-N4: Streamer&Client
+        N1  N2  N3  N4
+    
+
+parameter(삭제예정): packet size =30, packet nip = 30, mode 0, buffer size = 40 
+
 packet nip = 10, 30, 100
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171214248-19eda640-75c5-41e4-b832-dec8ad18bbdd.png" width="250" height="250"/>
