@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
     uint32_t mode = 0;         // 0
     uint32_t thresHold = 200;  // 200
     uint32_t bufferSize = 40;  // 40
-
+    std::string cmd_socketFactory = "ns3::TcpSocketFactory"; // default = tcpsocketfactory
     // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
     cmd.AddValue("PacketSize", "PacketSize", packetSize);
     cmd.AddValue("PacketNIP", "Number of packets in Frame", packetNip);
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     NS_LOG_INFO("Create Applications.");
     uint16_t port = 9; // Discard port (RFC 863)
 
-    OnOffHelper onoff("ns3::UdpSocketFactory",
+    OnOffHelper onoff(cmd_socketFactory,
                       Address(InetSocketAddress(interfaces.GetAddress(1), port)));
     onoff.SetConstantRate(DataRate("500kb/s"));
 
@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
     app.Stop(Seconds(10.0));
 
     // Create an optional packet sink to receive these packets
-    PacketSinkHelper sink("ns3::UdpSocketFactory",
+    PacketSinkHelper sink(cmd_socketFactory,
                           Address(InetSocketAddress(Ipv4Address::GetAny(), port)));
     app = sink.Install(nodes.Get(1));
     app.Start(Seconds(0.0));
@@ -170,9 +170,9 @@ int main(int argc, char *argv[])
     //
     // Now, do the actual simulation.
     //
-    NS_LOG_INFO("Run Simulation.");
+
     Simulator::Run();
     Simulator::Stop(Seconds(30.0));
     Simulator::Destroy();
-    NS_LOG_INFO("Done.");
+
 }

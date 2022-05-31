@@ -27,13 +27,13 @@ int main(int argc, char *argv[])
 
   int subFlowRate = udpRateMbps * 1000 * 1000;             // subNode source rate in b/s
   std::string cmd_socketFactory = "ns3::TcpSocketFactory"; // default = tcpsocketfactory
-  cmd_socketFactory = "ns3::UdpSocketFactory";
+  //cmd_socketFactory = "ns3::UdpSocketFactory";
 
   std::string cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_ontime) + "])";
-  cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=3])";
+  //cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=3])";
 
   std::string cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_offtime) + "])";
-  cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=3])";
+  //cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=3])";
   // Create nodes
   // NS_LOG_INFO ("Create nodes.");
 
