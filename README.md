@@ -180,10 +180,20 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 *메인 작성 후
 
 ### 2) Running the App 이원규 강남구 
+/src/applications/model/ : client.cc, client.h, streamer.cc streamer.h
+/src/applictions/helper/ : helper.cc, helper.h
+/scratch/ : topology main files
+
+/src/application/wscript 에서
+module.source = [ 'model/client.cc', 'model/streamer.cc', 'helper/helper.cc'] 추가
+headers.source = [ 'model/client.h', 'model/streamer.h', 'helper/helper.h'] 추가
+
 ```
-$ ./waf --run scratch/main 
+ns-3.29$ ./waf clean
+ns-3.29$ ./waf configure --build-profile=debug
+ns-3.29$ ./waf
+ns-3.29$ ./waf --run scratch/main
 ```
-등등 
 
 
 ### 3) Result 이원규 강남구 
