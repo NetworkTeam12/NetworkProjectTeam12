@@ -19,13 +19,13 @@ int main(int argc, char *argv[])
   LogComponentEnable("StreamingClientApplication", LOG_LEVEL_INFO);
   LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_INFO);
   NS_LOG_INFO("Start Create nodes.");
-  double udpRateMbps = 0.5; // UDP source rate in Mb/s, default: 0.5 Mb/s
+  
   uint32_t cmd_ontime = 1;
   uint32_t cmd_offtime = 1;
   CommandLine cmd;
-  cmd.AddValue("udpRateMbps", "Datarate of UDP source in bps", udpRateMbps);
+  
 
-  int subFlowRate = udpRateMbps * 1000 * 1000;             // subNode source rate in b/s
+  int subFlowRate = 0.5* 1000 * 1000;             // subNode source rate in b/s
   std::string cmd_socketFactory = "ns3::TcpSocketFactory"; // default = tcpsocketfactory
   //cmd_socketFactory = "ns3::UdpSocketFactory";
 
