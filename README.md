@@ -140,7 +140,7 @@ $ ./waf --run scratch/main
 ### sequenec number & resend count test
 	
 
-###    Topol 1.
+#####    Topol 1.
 
         N1                 
            \                
@@ -148,11 +148,11 @@ $ ./waf --run scratch/main
            /                
         N2                  
 
-###    Topol 2.
+#####    Topol 2.
 
         N1 - N2    p2p
 
-###    Topol 3.
+#####    Topol 3.
 	
 	 Wifi 192.168.1.0
    			
@@ -161,7 +161,7 @@ $ ./waf --run scratch/main
         |    |
         n1   n2
 
-###    Topol 4.
+#####    Topol 4.
         
         - - csma  - -       N1-N2: OnOff&sink
         |   |   |   |	    N3-N4: Streamer&Client
