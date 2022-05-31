@@ -12,11 +12,7 @@ using namespace ns3;
 
 NS_LOG_COMPONENT_DEFINE("topology1");
 
-// static void
-// CwndChange (uint32_t oldCwnd, uint32_t newCwnd)
-// {
-//   std::cout << Simulator::Now ().GetSeconds () << "\t" << newCwnd << std::endl;
-// }
+
 
 int main(int argc, char *argv[])
 {
@@ -108,15 +104,6 @@ int main(int argc, char *argv[])
   Address sinkAddressStreamer(InetSocketAddress(iRtriDst.GetAddress(1), PortStream)); // TODO
   Address sinkAddress(InetSocketAddress(iRtriDst.GetAddress(1), sinkPort));
 
-  //==========================================================================================
-  /* ToDo: Install packet sinks to the destinations
-       Hint: Need to install packet sinks for both TCP and UDP traffic */
-  // We need to choose socketFactory
-  // std::string socketFactory
-  // PacketSinkHelper packetSinkHelperTcp (cmd_socketFactory,InetSocketAddress(Ipv4Address::GetAny(),sinkPortStream));
-  // ApplicationContainer sinkAppTcp =packetSinkHelperTcp.Install(nodes.Get(3));//TODO:: this is for streamer not for TCP!
-
-  // we need client at here
 
   ClientHelper client(PortStream);
   client.SetAttribute("PacketSize", UintegerValue(packetSize));
@@ -134,14 +121,7 @@ int main(int argc, char *argv[])
   sinkApp.Start(Seconds(0.));
   sinkApp.Stop(Seconds(30.));
 
-  // we should change this to Streamer.
-  // OnOffHelper onoffTcp("ns3::TcpSocketFactory", sinkAddressStreamer);
-  // onoffTcp.SetAttribute("OnTime", StringValue("ns3::ConstantRandomVariable[Constant=1]"));
-  // onoffTcp.SetAttribute("OffTime",   StringValue("ns3::ConstantRandomVariable[Constant=0]"));
-  // onoffTcp.SetAttribute("DataRate", DataRateValue(500000));
-  // ApplicationContainer sourceAppTcp = onoffTcp.Install(nSrc1);
-  // sourceAppTcp.Start (Seconds (5.));
-  // sourceAppTcp.Stop (Seconds (20.));
+
 
   StreamerHelper streamer(iRtriDst.GetAddress(1), PortStream); // address, port num.
   streamer.SetAttribute("LossEnable", BooleanValue(lossEnable));
@@ -156,22 +136,7 @@ int main(int argc, char *argv[])
   streamApp.Start(Seconds(0.));
   streamApp.Stop(Seconds(30.));
 
-  //==========================================================================================
-  /* ToDo: Connect the trace source and the trace sink
-      Hint: Refer to week6_ex4.cc */
 
-  // TODO: understand. this is for TCP cwnd trace. We don't need this func.
-  /*
-  Ptr<Socket> ns3TcpSocket = Socket::CreateSocket (nodes.Get(0),TcpSocketFactory::GetTypeId());
-  ns3TcpSocket->TraceConnectWithoutContext ("CongestionWindow",MakeCallback(&CwndChange));
-  nSrc1->GetApplication (0)->GetObject<OnOffApplication> ()->SetSocket (ns3TcpSocket);
-  */
-  //==========================================================================================
-
-  //==========================================================================================
-  /* ToDo: Implement UDP application
-      Hint: Refer to the TCP app implementation procedure above
-      Warning: UDP app turns on and off every 1s and use variable "udpRate" for DataRate */
 
   // Flow2
   OnOffHelper onoff(cmd_socketFactory, sinkAddress);
