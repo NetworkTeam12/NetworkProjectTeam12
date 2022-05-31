@@ -1,23 +1,4 @@
 # NetworkProjectTeam12
-# 파일 구성 방법
-1.
-- client.cc, client.h, streamer.cc streamer.h : /src/applications/model/ 에 넣어주시고
-- helper.cc, helper.h : /src/applictions/helper/ 에 넣어주시고
-- mainfile.cc 는 /scratch/ 에 넣어주시고
-
-2.
-- /src/application/wscript 에서 module.source = [ 안에 'model/client.cc', 'model/streamer.cc', 'helper/helper.cc'] 추가해주시고
-- headers.source = [ 안에는  'model/client.h', 'model/streamer.h', 'helper/helper.h'] 추가해주시면 됩니다
-
-3.
-- ns-3.29$ ./waf clean
-- ns-3.29$ ./waf configure --build-profile=debug
-- ns-3.29$ ./waf
-- ns-3.29$ ./waf --run scratch/main
-
-
-
-# 옆에 본인 이름 적힌 항목 채워주시면 됩니다. 제출 시 지울 예정
 
 ## 1. Introduction 장지호
 Project Subject: **Reliability & Congestion Control**
@@ -180,13 +161,13 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 *메인 작성 후
 
 ### 2) Running the App 이원규 강남구 
-/src/applications/model/ : client.cc, client.h, streamer.cc streamer.h
-/src/applictions/helper/ : helper.cc, helper.h
-/scratch/ : topology main files
+- /src/applications/model/ : client.cc, client.h, streamer.cc streamer.h
+- /src/applictions/helper/ : helper.cc, helper.h
+- /scratch/ : topology main files
 
-/src/application/wscript 에서
-module.source = [ 'model/client.cc', 'model/streamer.cc', 'helper/helper.cc'] 추가
-headers.source = [ 'model/client.h', 'model/streamer.h', 'helper/helper.h'] 추가
+- /src/application/wscript 에서
+- module.source = [ 'model/client.cc', 'model/streamer.cc', 'helper/helper.cc'] 추가
+- headers.source = [ 'model/client.h', 'model/streamer.h', 'helper/helper.h'] 추가
 
 ```
 ns-3.29$ ./waf clean
