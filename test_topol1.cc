@@ -20,6 +20,13 @@ main(int argc, char*argv[])
         
         N1 - N2 - N3 - N4   1. 각 노드간 활발한 송수신.
     */
+
+   CommandLine cmd;
+   uint32_t pktsize;
+   // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
+   cmd.AddValue("pktsize","packet size",pktsize);
+   cmd.Parse(argc,argv);
+
     std::string datarate="10Mbps";
     std::string delay="10us";
 
@@ -29,18 +36,17 @@ main(int argc, char*argv[])
     // node container
    NodeContainer nodes;
    nodes.Create(4);
-   
-   
+
+
 
    NodeContainer n0n1 = NodeContainer(nodes.Get(0), nodes.Get(1));
    NodeContainer n1n2 = NodeContainer(nodes.Get(1), nodes.Get(2));
    NodeContainer n2n3 = NodeContainer(nodes.Get(2), nodes.Get(3));
-   
-    
+
 
     // connect setting
    PointToPointHelper p2p_1, p2p_2,p2p_3;
-   
+
     p2p_1.SetDeviceAttribute("DataRate", StringValue(datarate));
     p2p_1.SetChannelAttribute("Delay", StringValue(delay));
 
@@ -59,7 +65,7 @@ main(int argc, char*argv[])
 
     // enable pcap file
     // p2p_1.EnablePcapAll("main_project");
-    
+
    InternetStackHelper stack;
    stack.Install(nodes);
 
@@ -69,19 +75,16 @@ main(int argc, char*argv[])
    Ipv4InterfaceContainer interfaces2 = addr2.Assign(devices2);
    Ipv4InterfaceContainer interfaces3 = addr3.Assign(devices3);
 
-   
-
-
 
 //========================================
     //Appl. abstaction.
 //========================================
     
     Simulator::Run();
-   Simulator::Stop(Seconds(11.0));
-   Simulator::Destroy();
+    Simulator::Stop(Seconds(11.0));
+    Simulator::Destroy();
 
-   return 0;
+    return 0;
 }
 
 
