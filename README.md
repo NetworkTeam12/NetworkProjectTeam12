@@ -120,9 +120,9 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 
 ### 6) Main Function & Network Topology 이원규, 강남구
 
-#### CMD Attribute 설명
+#### Command Line Argument 설명
 	
-##### 1. Attributes for  Streamer
+##### 1. Arguments for  Streamer
 - PacketSize : 패킷 사이즈
 - PackletNip : 프레임 당 패킷 개수
 - Fps : 스트리밍 FPS
@@ -132,12 +132,12 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 - ThresHold : Select threshold
 
 
-##### 2. Attributes for Client
+##### 2. Arguments for Client
 - PacketSize : 패킷 사이즈
 - PackletNip : 프레임 당 패킷 개수
 - BufferSize : The frame buffer size
 	
-##### 3. Attributes for OnOffAppl (only for subflow,  Only when subflow exists)
+##### 3. Arguments for OnOffAppl (only for subflow,  Only when subflow exists)
 - protocol : protocol of sub flow if Tcp  type true if Udp type false (boolean type)
 - ontime : subflow's ontime
 - offtime : subflow's offtime
