@@ -206,7 +206,7 @@ uint32_t bufferSize = 40;
 	
 ##### buf 40, buf 100 (mode 1 fps 30)
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
 </p>
 	
