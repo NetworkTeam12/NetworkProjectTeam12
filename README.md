@@ -155,6 +155,10 @@ $ ./waf --run scratch/main
 
 	loss 0.1
 	![image](https://user-images.githubusercontent.com/28288186/171209642-813d9980-f512-451a-b686-147270d9084a.png)
+	
+	buf 100
+	![image](https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png)
+
 
 
 
