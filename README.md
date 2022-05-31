@@ -121,25 +121,6 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 ### 6) Main Function & Network Topology 이원규, 강남구
 
 
-
-<br>
-
-## 4. Running the Application
-### 1) DockerHub Link 장지호
-결과물 docker hub link 올리기 
-*메인 작성 후
-
-### 2) Running the App 이원규 강남구 
-```
-$ ./waf --run scratch/main 
-```
-등등 
-
-
-### 3) Result 이원규 강남구 
-### sequenec number & resend count test
-	
-
 #####    Topol 1.
 
         N1                 
@@ -167,6 +148,25 @@ $ ./waf --run scratch/main
         |   |   |   |	    N3-N4: Streamer&Client
         N1  N2  N3  N4
     
+
+<br>
+
+## 4. Running the Application
+### 1) DockerHub Link 장지호
+결과물 docker hub link 올리기 
+*메인 작성 후
+
+### 2) Running the App 이원규 강남구 
+```
+$ ./waf --run scratch/main 
+```
+등등 
+
+
+### 3) Result 이원규 강남구 
+### sequenec number & resend count test
+	
+
 
 parameter(삭제예정): packet size =30, packet nip = 30, mode 0, buffer size = 40 
 
