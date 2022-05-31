@@ -22,14 +22,13 @@
 ## 1. Introduction 장지호
 Project Subject: **Reliability & Congestion Control**
 
-NS3를 통해 Reliability & Congestion Control을 직접 구현하고, 다양한 Network Environment & Topology 시나리오에 대해 시뮬레이션을 진행한다.
+NS3를 통해 UDP 기반 Reliability & Congestion Control을 직접 구현하고, 다양한 Network Environment & Topology 시나리오에 대해 시뮬레이션을 진행한다.
 
 <br>
 
 ## 2. Environment 장지호
-- OS: Ubuntu 18.04 LTS  
-- Simulator: NS3.29 
-
+- OS: Ubuntu 18.04 LTS
+- Simulator: ns-3.29
 
 <br>
 
@@ -111,10 +110,10 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 
 ### 4) Reliability of UDP 조하영
 - Client가 FrameConsumer (void)에서 Frame을 소비할 때, 만약 없는 Frame/Packets이 있다면 Streamer에게 재요청한다. 
-- 재요청하는 방법은 빠진 Packet의 Seqeunce number을 packet header에 추가한 후, Streamer에게 보내는 것이다.
+- 재요청하는 방법은 빠진 Packet의 Sequence number를 packet header에 추가한 후, Streamer에게 보내는 것이다.
 - Streamer가 Client에게 이 Packet을 받으면 HandleRead()가 Callback으로 불리게 된다.
 - HandleRead()에서 받은 Packet의 Header를 제거하여 Sequence number를 확인한 후, 다시 Packet을 보낸다. (이때는 Loss Enable 적용 안 함)
-	
+
 ### 5) Congestion Control of UDP 이규민
 
 
