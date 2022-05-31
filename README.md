@@ -139,6 +139,8 @@ $ ./waf --run scratch/main
 ### 3) Result 이원규 강남구 
 결과물 -> 그래프
 ![image](https://user-images.githubusercontent.com/28288186/171199940-ed9563a1-4555-43cd-abb4-e5cab3accaa2.png)
+![image](https://user-images.githubusercontent.com/28288186/171200357-6f95a087-7423-4fdf-9f94-5fbc48f7f177.png)
+
 
 
 ### 4) Video Link 장지호
