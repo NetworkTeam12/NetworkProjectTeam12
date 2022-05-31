@@ -153,6 +153,9 @@ $ ./waf --run scratch/main
 	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="300" height="300"/>
 </p>
 
+	loss 0.1
+	![image](https://user-images.githubusercontent.com/28288186/171209642-813d9980-f512-451a-b686-147270d9084a.png)
+
 
 
 ### 4) Video Link 장지호
