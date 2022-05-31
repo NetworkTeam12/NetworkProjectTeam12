@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace ns3;
 
-NS_LOG_COMPONENT_DEFINE("topology3");
+NS_LOG_COMPONENT_DEFINE("topology2");
 
 int main(int argc, char **argv)
 {

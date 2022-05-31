@@ -8,13 +8,13 @@
 #include <iostream>
 using namespace ns3;
 
-NS_LOG_COMPONENT_DEFINE("topology1");
+NS_LOG_COMPONENT_DEFINE("topology3");
 
 int main(int argc, char *argv[])
 {
   LogComponentEnable("StreamingClientApplication", LOG_LEVEL_INFO);
   LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_INFO);
-  NS_LOG_INFO("Start Create nodes.");
+
 
   CommandLine cmd;
 
