@@ -122,7 +122,7 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 
 #### CMD Attribute 설명
 	
-##### Attributes for  Streamer
+##### 1. Attributes for  Streamer
 - PacketSize : 패킷 사이즈
 - PackletNip : 프레임 당 패킷 개수
 - Fps : 스트리밍 FPS
@@ -132,12 +132,12 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 - ThresHold : Select threshold
 
 
-##### Attributes for Client
+##### 2. Attributes for Client
 - PacketSize : 패킷 사이즈
 - PackletNip : 프레임 당 패킷 개수
 - BufferSize : The frame buffer size
 	
-##### Attributes for OnOffAppl (only for subflow)
+##### 3. Attributes for OnOffAppl (only for subflow)
 - protocol : protocol of sub flow if Tcp  type true if Udp type false (boolean type)
 - ontime : subflow's ontime
 - offtime : subflow's offtime
