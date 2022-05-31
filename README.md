@@ -140,6 +140,8 @@ $ ./waf --run scratch/main
 결과물 -> 그래프
 ![image](https://user-images.githubusercontent.com/28288186/171199940-ed9563a1-4555-43cd-abb4-e5cab3accaa2.png)
 ![image](https://user-images.githubusercontent.com/28288186/171200357-6f95a087-7423-4fdf-9f94-5fbc48f7f177.png)
+	![image](https://user-images.githubusercontent.com/28288186/171201119-f89b849c-8210-44df-83a8-ed02fa852221.png)
+
 
 
 
