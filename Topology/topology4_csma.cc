@@ -51,26 +51,34 @@ int main(int argc, char *argv[])
     //
     CommandLine cmd;
 
-    uint32_t fps = 30;         // 30
-    uint32_t packetSize = 100; // 100
-    uint32_t packetNip = 100;  // 100
-    bool lossEnable = false;   // false
-    double lossRate = 0.01;    // 0.01
-    uint32_t mode = 0;         // 0
-    uint32_t thresHold = 200;  // 200
-    uint32_t bufferSize = 40;  // 40
+  uint32_t fps = 30;         // 30
+  uint32_t packetSize = 100; // 100
+  uint32_t packetNip = 100;  // 100
+  bool lossEnable = false;   // false
+  double lossRate = 0.01;    // 0.01
+  uint32_t mode = 0;         // 0
+  uint32_t thresHold = 200;  // 200
+  uint32_t bufferSize = 40;  // 40
+  uint32_t isTcp=1;
+    uint32_t cmd_ontime = 1;
+  uint32_t cmd_offtime = 1;
     std::string cmd_socketFactory = "ns3::TcpSocketFactory"; // default = tcpsocketfactory
     // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
-    cmd.AddValue("PacketSize", "PacketSize", packetSize);
-    cmd.AddValue("PacketNIP", "Number of packets in Frame", packetNip);
-    cmd.AddValue("Fps", "StreamingFPS", fps);
-    cmd.AddValue("LossEn", "Forced Packet Loss on/off", lossEnable);
-    cmd.AddValue("LossRate", "Loss probability", lossRate);
-    cmd.AddValue("Mode", "Select congestion control mode", mode);
-    cmd.AddValue("ThresHold", "Select threshold", thresHold);
-    cmd.AddValue("BufferSize", "The frame buffer size", bufferSize);
+  cmd.AddValue("PacketSize", "PacketSize", packetSize);
+  cmd.AddValue("PacketNIP", "Number of packets in Frame", packetNip);
+  cmd.AddValue("Fps", "StreamingFPS", fps);
+  cmd.AddValue("LossEn", "Forced Packet Loss on/off", lossEnable);
+  cmd.AddValue("LossRate", "Loss probability", lossRate);
+  cmd.AddValue("Mode", "Select congestion control mode", mode);
+  cmd.AddValue("ThresHold", "Select threshold", thresHold);
+  cmd.AddValue("BufferSize", "The frame buffer size", bufferSize);
+  cmd.AddValue("ontime","subflow's ontime",cmd_ontime);
+  cmd.AddValue("offtime","subflow's offtime",cmd_offtime);
 
     cmd.Parse(argc, argv);
+    std::string cmd_socketFactory = isTcp?"ns3::TcpSocketFactory":"ns3::UdpSocketFactory"; // default = tcpsocketfactory
+  std::string cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_ontime) + "])";
+  std::string cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_offtime) + "])";
     //
     // Explicitly create the nodes required by the topology (shown above).
     //
