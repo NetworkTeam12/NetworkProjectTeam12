@@ -240,8 +240,39 @@ uint32_t bufferSize = 40;
 	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
 </p>
 	
+## Topology2 ( WIFI )
+##### base( 	uint32_t fps = 30; 
+	uint32_t packetSize = 100; 
+	uint32_t packetNip = 100; 
+	bool lossEnable = false;
+	double lossRate = 10;	 
+	uint32_t mode = 0; 	
+	uint32_t thresHold = 200; 
+	uint32_t bufferSize = 40; )<br>
+	loss 0.1 mode 0
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171256552-f8a202aa-3b49-4bff-ad97-c4c829fd53b3.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
+</p>
 	
-
+##### loss 0.1, 0.3, 0.5 (mode 1)
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171255557-f8f2697e-c239-4651-aa6b-804e798e88db.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171255704-944b301a-c8fd-4491-b188-f16b0f3c827b.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171255829-6a3c5368-f724-4e5c-902a-1bbb5066be61.png" width="250" height="250"/>
+</p>	
+	
+##### loss 0.3 mode 1 threshold 100, 200
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171255955-e94b5c79-5351-4982-af8e-329963c0be2f.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171255704-944b301a-c8fd-4491-b188-f16b0f3c827b.png" width="250" height="250"/>
+</p>	
+	
+##### loss 0.5 mode 1 threshold 200 bufsize 20, 40
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/28288186/171256199-d67b2cfe-0b01-423f-914b-b9fd28452238.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171255829-6a3c5368-f724-4e5c-902a-1bbb5066be61.png" width="250" height="250"/>
+</p>	
 
 
 
