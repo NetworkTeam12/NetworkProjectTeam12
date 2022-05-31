@@ -126,21 +126,22 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 
 #####    Topol 2.
 
-        N1                 
-           \                
-              N3- N4     N1-N4 Streamer& Client  N2-N4: UDP or TCP 
-           /                
-        N2                  
-
-
-#####    Topol 3.
-	
 	 Wifi 192.168.1.0
    			
           AP
         *    *
         |    |
         n1   n2
+               
+
+
+#####    Topol 3.
+	
+        N1                 
+           \                
+              N3- N4     N1-N4 Streamer& Client  N2-N4: UDP or TCP 
+           /                
+        N2   
 
 #####    Topol 4.
         
