@@ -14,8 +14,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
-
 #include <iostream>
 #include <fstream>
 #include "ns3/core-module.h"
@@ -44,11 +42,10 @@ int main(int argc, char *argv[])
     uint32_t mode = 0;         // 0
     uint32_t thresHold = 200;  // 200
     uint32_t bufferSize = 40;  // 40
-    uint32_t isTcp = 1;
     uint32_t cmd_ontime = 1;
     uint32_t cmd_offtime = 1;
-    //std::string cmd_socketFactory = "ns3::TcpSocketFactory"; // default = tcpsocketfactory
-                                                             // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
+    bool isTcp = 1;
+    // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
     cmd.AddValue("PacketSize", "PacketSize", packetSize);
     cmd.AddValue("PacketNIP", "Number of packets in Frame", packetNip);
     cmd.AddValue("Fps", "StreamingFPS", fps);
@@ -57,6 +54,7 @@ int main(int argc, char *argv[])
     cmd.AddValue("Mode", "Select congestion control mode", mode);
     cmd.AddValue("ThresHold", "Select threshold", thresHold);
     cmd.AddValue("BufferSize", "The frame buffer size", bufferSize);
+    cmd.AddValue("protocol", "protocol of sub flow if Tcp  type true if Udp type false", isTcp);
     cmd.AddValue("ontime", "subflow's ontime", cmd_ontime);
     cmd.AddValue("offtime", "subflow's offtime", cmd_offtime);
 
@@ -64,8 +62,6 @@ int main(int argc, char *argv[])
     std::string cmd_socketFactory = isTcp ? "ns3::TcpSocketFactory" : "ns3::UdpSocketFactory"; // default = tcpsocketfactory
     std::string cmd_ontime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_ontime) + "])";
     std::string cmd_offtime_string = "ns3::ConstantRandomVariable[Constant=" + std::to_string(cmd_offtime) + "])";
-    //
-    // Explicitly create the nodes required by the topology (shown above).
     //
     NS_LOG_INFO("Create nodes.");
     NodeContainer nodes;
@@ -143,13 +139,10 @@ int main(int argc, char *argv[])
     clientapp.Stop(Seconds(30.));
     NS_LOG_INFO("Configure Tracing.");
 
-
     AsciiTraceHelper ascii;
     csma.EnableAsciiAll(ascii.CreateFileStream("csma-one-subnet.tr"));
 
-
     csma.EnablePcapAll("csma-one-subnet", false);
-
 
     Simulator::Run();
     Simulator::Stop(Seconds(30.0));

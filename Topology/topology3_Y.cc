@@ -16,8 +16,6 @@ int main(int argc, char *argv[])
   LogComponentEnable("StreamingStreamerApplication", LOG_LEVEL_INFO);
   NS_LOG_INFO("Start Create nodes.");
 
-  uint32_t cmd_ontime = 1;
-  uint32_t cmd_offtime = 1;
   CommandLine cmd;
 
   int subFlowRate = 0.5 * 1000 * 1000; // subNode source rate in b/s
@@ -30,7 +28,9 @@ int main(int argc, char *argv[])
   uint32_t mode = 0;         // 0
   uint32_t thresHold = 200;  // 200
   uint32_t bufferSize = 40;  // 40
-  uint32_t isTcp = 1;
+  uint32_t cmd_ontime = 1;
+  uint32_t cmd_offtime = 1;
+  bool isTcp = 1;
   // cmd.AddValue (string::"attribute", string::"explanation", anytype::variable)
   cmd.AddValue("PacketSize", "PacketSize", packetSize);
   cmd.AddValue("PacketNIP", "Number of packets in Frame", packetNip);
@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
   cmd.AddValue("Mode", "Select congestion control mode", mode);
   cmd.AddValue("ThresHold", "Select threshold", thresHold);
   cmd.AddValue("BufferSize", "The frame buffer size", bufferSize);
+  cmd.AddValue("protocol", "protocol of sub flow if Tcp  type true if Udp type false", isTcp);
   cmd.AddValue("ontime", "subflow's ontime", cmd_ontime);
   cmd.AddValue("offtime", "subflow's offtime", cmd_offtime);
 
@@ -52,7 +53,6 @@ int main(int argc, char *argv[])
   Ptr<Node> nSrc2 = CreateObject<Node>();
   Ptr<Node> nRtr = CreateObject<Node>();
   Ptr<Node> nDst = CreateObject<Node>();
-
 
   NodeContainer nodes = NodeContainer(nSrc1, nSrc2, nRtr, nDst);
 
@@ -72,7 +72,6 @@ int main(int argc, char *argv[])
   NetDeviceContainer dSrc2dRtr = p2p.Install(nSrc2nRtr);
   NetDeviceContainer dRtrdDst = p2p.Install(nRtrnDst);
 
-
   NS_LOG_INFO("Assign IP Addresses.");
   Ipv4AddressHelper ipv4;
   ipv4.SetBase("10.1.1.0", "255.255.255.0");
@@ -82,9 +81,7 @@ int main(int argc, char *argv[])
   ipv4.SetBase("10.1.3.0", "255.255.255.0");
   Ipv4InterfaceContainer iRtriDst = ipv4.Assign(dRtrdDst);
 
-
   Ipv4GlobalRoutingHelper::PopulateRoutingTables();
-
 
   uint16_t PortStream = 8080;
   uint16_t sinkPort = 9090;
