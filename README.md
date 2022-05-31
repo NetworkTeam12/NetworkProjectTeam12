@@ -138,6 +138,18 @@ $ ./waf --run scratch/main
 
 ### 3) Result 이원규 강남구 
 
+	
+### FPS test
+#### parameter
+uint32_t fps = 30; 			
+uint32_t packetSize = 100; 
+uint32_t packetNip = 100; 
+bool lossEnable = true;	
+double lossRate = 0.01;	 	
+uint32_t mode = 1; 		
+uint32_t thresHold = 200; 	
+uint32_t bufferSize = 40; 	
+	
 ##### mode 0 fps 10, 20, 30
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171199940-ed9563a1-4555-43cd-abb4-e5cab3accaa2.png" width="250" height="250"/>
