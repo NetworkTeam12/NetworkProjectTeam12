@@ -1,21 +1,24 @@
 # NetworkProjectTeam12
 
 ## 1. Introduction 장지호
-Project Subject: **Reliability & Congestion Control**
-
-NS3를 통해 UDP 기반 Reliability & Congestion Control을 직접 구현하고, 다양한 Network Environment & Topology 시나리오에 대해 시뮬레이션을 진행한다.
+Project Subject: **Reliability & Congestion Control Streaming**
+- NS3를 통해 UDP 기반 Reliability & Congestion Control을 직접 구현하고, 
+- Streaming Application을 통해
+- 다양한 Network Environment & Topology 시나리오에 대해 시뮬레이션을 진행한다.
 
 <br>
 
 ## 2. Environment 장지호
-- OS: Ubuntu 18.04 LTS
-- Simulator: ns-3.29
+- OS : Ubuntu 18.04 LTS
+- Simulato r: ns-3.29
 
 <br>
 
 ## 3. Application Explanation
 ### 1) Introduction 장지호
-Reliability & Congestion Control을 구현하기 위해 client application과 server application에 대한 코드와 헤더 파일을 각각 작성했고, 추가로 application 동작에 사용되는 helper 코드도 함께 작성했다. 또한 우리가 구현한 application을 기반으로 다양한 시나리오를 시뮬레이션할 수 있는 main.cc 코드를 구축해놓았다.
+- Reliability & Congestion Control을 구현하기 위해 client application과 server application에 대한 코드와 헤더 파일을 각각 작성했고, 
+- 추가로 application 동작에 사용되는 helper 코드도 함께 작성했다. 
+- 또한 우리가 구현한 application을 기반으로 다양한 시나리오를 시뮬레이션할 수 있는 main.cc 코드를 구축해놓았다.
 
 ### 2) Code Tree 장지호
     ns3.29
@@ -100,9 +103,7 @@ Reliability & Congestion Control을 구현하기 위해 client application과 se
 
 
 ### 6) Main Function & Network Topology 이원규, 강남구
-
 #### CMD Attribute 설명
-	
 ##### 1. Attributes for  Streamer
 - PacketSize : 패킷 사이즈
 - PackletNip : 프레임 당 패킷 개수
@@ -179,9 +180,6 @@ ns-3.29$ ./waf --run scratch/main
 
 ### 3) Result 이원규 강남구 
 ### sequenec number & resend count test
-	
-
-
 parameter(삭제예정): packet size =30, packet nip = 30, mode 0, buffer size = 40 
 
 packet nip = 10, 30, 100
