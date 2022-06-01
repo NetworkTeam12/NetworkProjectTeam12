@@ -165,7 +165,7 @@ Project Subject: **Reliability & Congestion Control Streaming**
 <br>
 
 ## 4. Running the Application
-### 1) DockerHub Link 강남구
+### 1) DockerHub Link 
 #### docker hub link
 	https://hub.docker.com/r/skarn2158/netproj-team12/tags
 #### docker pull command
