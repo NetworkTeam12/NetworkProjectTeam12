@@ -200,8 +200,8 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 
 > #### packet nip = 10, 30, 100
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171214248-19eda640-75c5-41e4-b832-dec8ad18bbdd.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171214248-19eda640-75c5-41e4-b832-dec8ad18bbdd.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171215550-a70c5495-8b78-48b5-b818-0eb125f072c7.png" width="250" height="250"/>
 </p>
 	
