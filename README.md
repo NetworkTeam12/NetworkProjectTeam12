@@ -344,8 +344,8 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 ## 5. Team Members & Roles
 ### 1) SubTeam 1.
 - Streamer.h, Streamer.cc, Client.h, Client.cc, README.md
-- 조하영 : Streaming Code의 전체적인 틀, Reliability of UDP, README.md 작성
-- 이규민 : Streaming Code의 전체적인 틀, Congestion control of UDP, README.md 작성
+- 조하영 : Streaming Code의 전체적인 틀, Reliability of UDP, README.md 작성, 결과 해석
+- 이규민 : Streaming Code의 전체적인 틀, Congestion control of UDP, README.md 작성, 결과 해석
 
 ### 2) SubTeam 2.
 - StreamingHelper.cc StreamingHelper.h
@@ -374,4 +374,5 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 - 5/23~5/31 : Development of SubTeam 3
 - 5/31~6/1 : Project Meeting (SubTeam 3)
 - 5/29~6/1 : Development of SubTeam 4
+- 6/1 : Making a conclusion (SubTeam 1) 
 - 6/1 : Feedback & Submission 
