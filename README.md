@@ -382,6 +382,6 @@ uint32_t bufferSize = 40;
 - 5/23 : Issue 해결 (조하영)
 - 5/24 : Issue 해결 (이규민)
 - 5/23~5/31 : Development of SubTeam 3
-- 5/31 : Project Meeting (SubTeam 3)
-- 5/29~5/31 : Development of SubTeam 4
+- 5/31~6/1 : Project Meeting (SubTeam 3)
+- 5/29~6/1 : Development of SubTeam 4
 - 6/1 : Feedback & Submission 
