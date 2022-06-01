@@ -192,7 +192,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 ### 3) Result 이원규 강남구 
 ### Topol1 - p2p
 ***
-#### 1. Sequence number & Resend count test (Flow1: seq num, Flow2: resend count)
+### 1. Sequence number & Resend count test (Flow1: seq num, Flow2: resend count)
 #### base parameter: packet size = 30, packet nip = 30, mode 0, buffer size = 40 
 
 > #### packet nip = 10, 30, 100
@@ -227,7 +227,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171218804-2ae563fb-6a32-4129-8667-ecca46f75968.png" width="250" height="250"/>
 </p>
 	
-#### 2. FPS test (Flow1: fps)
+### 2. FPS test (Flow1: fps)
 #### base parameter: packetSize = 100, packetNip = 100, thresHold = 200, bufferSize = 40
 	
 > #### mode 0 fps 10, 20, 30
@@ -257,7 +257,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
 </p>
 	
-#### 3. Retry (Flow1: fps)
+### 3. Retry (Flow1: fps)
 #### base parameter: fps = 30 packetSize = 100, packetNip = 100, mode = 1, thresHold = 200, bufferSize = 40	
 > #### no loss, loss 0.1, 0.3
 <p float="left">
