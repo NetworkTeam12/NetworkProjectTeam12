@@ -162,9 +162,11 @@ Project Subject: **Reliability & Congestion Control Streaming**
 <br>
 
 ## 4. Running the Application
-### 1) DockerHub Link 장지호
-결과물 docker hub link 올리기 
-*메인 작성 후
+### 1) DockerHub Link 
+#### docker hub link
+https://hub.docker.com/r/skarn2158/netproj-team12/tags
+#### docker pull command
+docker pull skarn2158/netproj-team12:base
 
 ### 2) Running the App 이원규 강남구 
 - /src/applications/model/ : client.cc, client.h, streamer.cc streamer.h
@@ -179,7 +181,11 @@ Project Subject: **Reliability & Congestion Control Streaming**
 ns-3.29$ ./waf clean
 ns-3.29$ ./waf configure --build-profile=debug
 ns-3.29$ ./waf
-ns-3.29$ ./waf --run scratch/main
+ns-3.29$ ./waf --run scratch/topology1_p2p_pair
+ns-3.29$ ./waf --run scratch/topology2_wifi
+ns-3.29$ ./waf --run scratch/topology3_Y
+ns-3.29$ ./waf --run scratch/topology4_csma
+	
 ```
 
 
@@ -382,6 +388,6 @@ uint32_t bufferSize = 40;
 - 5/23 : Issue 해결 (조하영)
 - 5/24 : Issue 해결 (이규민)
 - 5/23~5/31 : Development of SubTeam 3
-- 5/31 : Project Meeting (SubTeam 3)
-- 5/29~5/31 : Development of SubTeam 4
+- 5/31~6/1 : Project Meeting (SubTeam 3)
+- 5/29~6/1 : Development of SubTeam 4
 - 6/1 : Feedback & Submission 
