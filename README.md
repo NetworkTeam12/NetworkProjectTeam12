@@ -100,7 +100,12 @@ Project Subject: **Reliability & Congestion Control Streaming**
 - HandleRead()에서 받은 Packet의 Header를 제거하여 Sequence number를 확인한 후, 다시 Packet을 보낸다. (이때는 Loss Enable 적용 안 함)
 
 ### 5) Congestion Control of UDP 이규민
-
+- Streamer가 Flowcontrol()를 이용해서, Fps를 조절해준다. Flowcontrol()에서 control mode를 선택할수 있는데 AIMD, Slow Start가 있다.
+- AIMD의 경우 1 Frame을 보내면 Fps가 1 증가하고, Client가 resend를 요청하면 Fps를 반으로 한다. 단 최저값 이하로는 내려가지 않는다.
+- Slow Start의 경우 threshold에 도달하지 않으면 1 Frame을 보내면 Fps가 2배로 증가하고, threshold에 도달하면 1 Frame을 보내면 Fps가 1 증가한다.
+  Client가 resend를 요청했고 slowstart 중이라면, resend 요청이 seqN 보다 3 낮으면, threshold를 줄이고 Fps를 최저값으로 변경한다. 만약 resend 요청이 
+  seqN 보다 3 낮지 않으면 Fps를 최저값으로 변경하고 끝낸다.
+  slowstart가 아니라면, threshold를 줄이고 Fps를 최저값으로 변경한다.
 
 ### 6) Main Function & Network Topology 이원규, 강남구
 #### CMD Attribute 설명
