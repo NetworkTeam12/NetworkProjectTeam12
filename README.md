@@ -190,36 +190,36 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 
 
 ### 3) Result 이원규 강남구 
-### sequenec number & resend count test
-parameter(삭제예정): packet size =30, packet nip = 30, mode 0, buffer size = 40 
+### sequence number & resend count test(Flow1: seq num, Flow2: resend count)
+base parameter: packet size = 30, packet nip = 30, mode 0, buffer size = 40 
 
-packet nip = 10, 30, 100
+> #### packet nip = 10, 30, 100
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171214248-19eda640-75c5-41e4-b832-dec8ad18bbdd.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171215550-a70c5495-8b78-48b5-b818-0eb125f072c7.png" width="250" height="250"/>
 </p>
 	
-packet size = 10, 30, 100
+> #### packet size = 10, 30, 100
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171215782-43a27547-00e3-4003-a89e-9e1e7f8d9d0e.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171215817-c252ff22-3faf-4670-965c-20c7172bccf1.png" width="250" height="250"/>
 </p>
 	
-mode 0, 1
+> #### mode 0, 1
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171216066-9f0c7878-4535-44b5-86d0-47b5b31aa3ea.png" width="250" height="250"/>
 </p>
 	
-threshold 50, 500
+> #### threshold 50, 500
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171216455-dd42ad40-fc9f-4854-b4e0-ed0b1c1de368.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171216525-1981cef7-ed68-4f05-a8c1-363662536846.png" width="250" height="250"/>
 </p>
 	
-lossRate 0.01, 0.1
+> #### lossRate 0.01, 0.1
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171214248-19eda640-75c5-41e4-b832-dec8ad18bbdd.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171218804-2ae563fb-6a32-4129-8667-ecca46f75968.png" width="250" height="250"/>
