@@ -155,7 +155,7 @@ Streamer::Send (void)
 	    		srand(time(NULL));
 			double randN =  (rand() % 10000) / 100; // random for 0-99
 			// NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << "Streamer loss enable" );
-			if (randN < m_lossRate) {
+			if (randN < m_lossRate * 100) {
         NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) <<" frame : " << m_frameN << " seq : "  << m_seqN << " packet loss" );
         m_seqN++;
         continue;
