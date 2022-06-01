@@ -233,7 +233,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 </p>
 	
 ### 2. FPS test (Flow1: fps)
-#### base parameter: packetSize = 100, packetNip = 100, thresHold = 200, bufferSize = 40
+#### base parameter: packetSize = 100, packetNip = 100, threshold = 200, bufferSize = 40
 	
 > #### mode 0 fps 10, 20, 30
 <p float="left">
@@ -263,7 +263,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 </p>
 	
 ### 3. Retry (Flow1: fps)
-#### base parameter: fps = 30 packetSize = 100, packetNip = 100, mode = 1, thresHold = 200, bufferSize = 40	
+#### base parameter: fps = 30 packetSize = 100, packetNip = 100, mode = 1, threshold = 200, bufferSize = 40	
 > #### no loss, loss 0.1, 0.3
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171259482-bb9c2ac1-bfe3-4435-8980-22fdba7c4c3c.png" width="250" height="250"/>
@@ -274,7 +274,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	
 ### Topology2 - WIFI (Flow1 : fps)
 ***
-##### base parameter: fps = 30, packetSize = 100, packetNip = 100, mode = 0, thresHold = 200, bufferSize = 40
+##### base parameter: fps = 30, packetSize = 100, packetNip = 100, mode = 0, threshold = 200, bufferSize = 40
 > #### no loss, loss 0.1
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171256552-f8a202aa-3b49-4bff-ad97-c4c829fd53b3.png" width="250" height="250"/>
