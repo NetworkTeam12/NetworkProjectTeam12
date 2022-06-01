@@ -190,7 +190,8 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 
 
 ### 3) Result 이원규 강남구 
-### Sequence number & Resend count test (Flow1: seq num, Flow2: resend count)
+## Topol1 - p2p
+### 1. Sequence number & Resend count test (Flow1: seq num, Flow2: resend count)
 #### base parameter: packet size = 30, packet nip = 30, mode 0, buffer size = 40 
 
 > #### packet nip = 10, 30, 100
@@ -225,7 +226,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171218804-2ae563fb-6a32-4129-8667-ecca46f75968.png" width="250" height="250"/>
 </p>
 	
-### FPS test (Flow1: fps)
+### 2. FPS test (Flow1: fps)
 #### base parameter: packetSize = 100, packetNip = 100, thresHold = 200, bufferSize = 40
 	
 > #### mode 0 fps 10, 20, 30
@@ -255,7 +256,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
 </p>
 	
-### Retry (Flow1: fps)
+### 3. Retry (Flow1: fps)
 #### base parameter: fps = 30 packetSize = 100, packetNip = 100, mode = 1, thresHold = 200, bufferSize = 40	
 > #### no loss, loss 0.1, 0.3
 <p float="left">
@@ -264,7 +265,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171259726-a226b40c-43a3-439a-99f4-16f191a883a9.png" width="250" height="250"/>
 </p>
 	
-## Topology2 ( WIFI )
+## Topology2 - WIFI (Flow1 : fps)
 ##### base parameter: fps = 30, packetSize = 100, packetNip = 100, mode = 0, thresHold = 200, bufferSize = 40
 > #### no loss, loss 0.1
 <p float="left">
@@ -292,7 +293,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 </p>	
 
 
-## Topology3 ( Y )
+## Topology3 - Y (Flow1 : fps)
 > #### udp 1-0, 0-1, 1-1 (no loss)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171266111-f1426a26-98ed-4edb-9450-dcbc71a6a807.png" width="250" height="250"/>
@@ -313,7 +314,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171266021-50a20e1e-c262-445d-b247-0768ab236386.png" width="250" height="250"/>
 </p>	
 
-## Topology4 ( CSMA )
+## Topology4 - CSMA (Flow1 : fps)
 > #### tcp 1-1, udp 1-1 (no loss)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171275440-2e24ffd0-143d-4efd-829a-7a9e878b98e9.png" width="250" height="250"/>
