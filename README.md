@@ -299,7 +299,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	
 ### Topology3 - Y (Flow1 : fps)
 ***
-> #### udp 1-0, 0-1, 1-1 (no loss) (mode 0)
+> #### udp 1(on)-0(off), 0-1, 1-1 (no loss) (mode 0)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171266111-f1426a26-98ed-4edb-9450-dcbc71a6a807.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171266095-6bb01e6e-4618-4d42-9c2e-899857389b7b.png" width="250" height="250"/>
