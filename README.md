@@ -162,9 +162,9 @@ Project Subject: **Reliability & Congestion Control Streaming**
 <br>
 
 ## 4. Running the Application
-### 1) DockerHub Link 장지호
-결과물 docker hub link 올리기 
-*메인 작성 후
+### 1) DockerHub Link 
+#### docker hub link
+https://hub.docker.com/r/skarn2158/netproj-team12/tags
 
 ### 2) Running the App 이원규 강남구 
 - /src/applications/model/ : client.cc, client.h, streamer.cc streamer.h
