@@ -73,7 +73,7 @@ Project Subject: **Reliability & Congestion Control Streaming**
 	2. StartApplication ()
 		- Udp Socket을 통해 요청들어오는 Server와 bind 실행 
 		- Socket을 통해 Packet을 Receive 시 HandleRead()가 불리도록 Callback 연결
-	3. HandleRead (Ptr<Socket> socket)
+	3. HandleRead (Ptr\<Socket> socket)
 		- Packet을 받을 때 불리는 Callback function
 		- Packet Header제거 후, Frame number, Sequence number 확인 후 PutFrameBuffer() 실행
 	4. PutFrameBuffer (uint32_t frameN, uint32_t seqN)
@@ -83,7 +83,7 @@ Project Subject: **Reliability & Congestion Control Streaming**
 		- 만약 Frame buffer가 가득 찼다면 Frame에 packet 추가 안 함
 		- 만약 Packet의 Frame number가 SendCheck를 하지 않았던 Frame이라면 SendCheck()로 실행
 		- 만약 Packet의 Frame number가 소비했던 Frame Number보다 크다면 FrameConsumer()로 실행
-	5.  SendCheck(Address from, Ptr<Socket> socket)
+	5.  SendCheck(Address from, Ptr\<Socket> socket)
 		- Frame buffer에 있는 packet들이 온전히 다 왔는지 확인하고, 
 		- 안 온 packet이 있다면 resend를 요청하는 함수
 	6. FrameConsumer (void)
@@ -100,7 +100,7 @@ Project Subject: **Reliability & Congestion Control Streaming**
 - HandleRead()에서 받은 Packet의 Header를 제거하여 Sequence number를 확인한 후, 다시 Packet을 보낸다. (이때는 Loss Enable 적용 안 함)
 
 ### 5) Congestion Control of UDP 이규민
-- Streamer가 Flowcontrol()를 이용해서, Fps를 조절해준다. Flowcontrol()에서 control mode를 선택할수 있는데 AIMD, Slow Start가 있다.
+- Streamer가 Flowcontrol()를 이용해서, Fps를 조절해준다. Flowcontrol()에서 control mode를 선택할 수 있는데 AIMD, Slow Start가 있다.
 - AIMD의 경우 1 Frame을 보내면 Fps가 1 증가하고, Client가 resend를 요청하면 Fps를 반으로 한다. 단 최저값 이하로는 내려가지 않는다.
 - Slow Start의 경우 threshold에 도달하지 않으면 1 Frame을 보내면 Fps가 2배로 증가하고, threshold에 도달하면 1 Frame을 보내면 Fps가 1 증가한다.
   Client가 resend를 요청했고 slowstart 중이라면, resend 요청이 seqN 보다 3 낮으면, threshold를 줄이고 Fps를 최저값으로 변경한다. 만약 resend 요청이 
