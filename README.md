@@ -63,6 +63,9 @@ Project Subject: **Reliability & Congestion Control Streaming**
 		- Client에게 재 전송 
 	6. StopApplication ()
 		- Socket 닫고 Callback 함수 초기화하여 Application 종료
+	7. Flowcontrol (uint32_t drop, uint32_t seqN)
+		- Fps의 변동을 이용해 보내는 Packet을 조절, 2가지 Flow control mode를 가지고 있다.
+		- Frame을 성공적으로 전송하면, Fps를 증가시키고, loss가 발생하면 Fps를 감소시킨다.
 
 #### B. Frame
 - Member Variable : m_packets[1000], m_send[1000]
@@ -94,7 +97,6 @@ Project Subject: **Reliability & Congestion Control Streaming**
 		- 소비해야 하는 Frame이 resend를 요청한 것이 없다면, framebuffer에서 frame을 지우면서 소비한다.
 	7. StopApplication ()
 		- Socket 닫고 Callback 함수 초기화하여 Application 종료
-
 
 ### 4) Reliability of UDP 
 - Client가 HandleRead()-> PutFrameBuffer() 거치면서 SendCheck()에서 만약 없는 Frame/Packets이 있다면 Streamer에게 재요청한다. 
