@@ -10,7 +10,7 @@ Project Subject: **Reliability & Congestion Control Streaming**
 
 ## 2. Environment
 - OS : Ubuntu 18.04 LTS
-- Simulato r: ns-3.29
+- Simulator: ns-3.29
 
 <br>
 
@@ -200,10 +200,10 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 ### 1. Sequence number & Resend count test (Flow1: seq num, Flow2: resend count)
 #### base parameter: packet size = 30, packet nip = 30, mode 0, buffer size = 40 
 
-> #### packet nip = 10, 30, 100 => nip 30 case 확인 후 삭제 필요
+> #### packet nip = 10, 60, 100
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171214248-19eda640-75c5-41e4-b832-dec8ad18bbdd.png" width="250" height="250"/>
+	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171215550-a70c5495-8b78-48b5-b818-0eb125f072c7.png" width="250" height="250"/>
 </p>
 	
@@ -344,8 +344,8 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 ## 5. Team Members & Roles
 ### 1) SubTeam 1.
 - Streamer.h, Streamer.cc, Client.h, Client.cc, README.md
-- 조하영 : Streaming Code의 전체적인 틀, Reliability of UDP, README.md 작성
-- 이규민 : Streaming Code의 전체적인 틀, Congestion control of UDP, README.md 작성
+- 조하영 : Streaming Code의 전체적인 틀, Reliability of UDP, README.md 작성, 결과 해석
+- 이규민 : Streaming Code의 전체적인 틀, Congestion control of UDP, README.md 작성, 결과 해석
 
 ### 2) SubTeam 2.
 - StreamingHelper.cc StreamingHelper.h
@@ -374,4 +374,5 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 - 5/23~5/31 : Development of SubTeam 3
 - 5/31~6/1 : Project Meeting (SubTeam 3)
 - 5/29~6/1 : Development of SubTeam 4
+- 6/1 : Making a conclusion (SubTeam 1) 
 - 6/1 : Feedback & Submission 
