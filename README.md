@@ -1,6 +1,6 @@
 # NetworkProjectTeam12
 
-## 1. Introduction 장지호
+## 1. Introduction
 Project Subject: **Reliability & Congestion Control Streaming**
 - NS3를 통해 UDP 기반 Reliability & Congestion Control을 직접 구현하고, 
 - Streaming Application을 통해
@@ -8,19 +8,19 @@ Project Subject: **Reliability & Congestion Control Streaming**
 
 <br>
 
-## 2. Environment 장지호
+## 2. Environment
 - OS : Ubuntu 18.04 LTS
 - Simulato r: ns-3.29
 
 <br>
 
 ## 3. Application Explanation
-### 1) Introduction 장지호
+### 1) Introduction 
 - Reliability & Congestion Control을 구현하기 위해 client application과 server application에 대한 코드와 헤더 파일을 각각 작성했고, 
 - 추가로 application 동작에 사용되는 helper 코드도 함께 작성했다. 
 - 또한 우리가 구현한 application을 기반으로 다양한 시나리오를 시뮬레이션할 수 있는 main.cc 코드를 구축해놓았다.
 
-### 2) Code Tree 장지호
+### 2) Code Tree 
     ns3.29
     ├─ src
     │  └─ application
@@ -35,10 +35,13 @@ Project Subject: **Reliability & Congestion Control Streaming**
     │        └─ helper.h
     │ 
     └─ scratch
-	    └─ main.cc
+	    └─ topology1_p2p_pair.cc
+	    └─ topology2_wifi.cc
+	    └─ topology3_Y.cc
+	    └─ topology4_csma.cc
 
 
-### 3) Streaming Logic 조하영 이규민
+### 3) Streaming Logic 
 #### A. Streamer
 - Attribute : Remote, Port, PacketSize, StreamingFPS, LossEnable, LossRate, PacketNIP, Mode, threshold
 - Additional Member Variable : m_socket, m_sendEvent, m_congestionEvent, m_frameN, m_seqN, m_mode, m_slowstart, m_threshold, m_flag;
@@ -93,13 +96,13 @@ Project Subject: **Reliability & Congestion Control Streaming**
 		- Socket 닫고 Callback 함수 초기화하여 Application 종료
 
 
-### 4) Reliability of UDP 조하영
+### 4) Reliability of UDP 
 - Client가 HandleRead()-> PutFrameBuffer() 거치면서 SendCheck()에서 만약 없는 Frame/Packets이 있다면 Streamer에게 재요청한다. 
 - 재요청하는 방법은 빠진 Packet의 Sequence number를 packet header에 추가한 후, Streamer에게 보내는 것이다.
 - Streamer가 Client에게 이 Packet을 받으면 HandleRead()가 Callback으로 불리게 된다.
 - HandleRead()에서 받은 Packet의 Header를 제거하여 Sequence number를 확인한 후, 다시 Packet을 보낸다. (이때는 Loss Enable 적용 안 함)
 
-### 5) Congestion Control of UDP 이규민
+### 5) Congestion Control of UDP 
 - Streamer가 Flowcontrol()를 이용해서, Fps를 조절해준다. Flowcontrol()에서 control mode를 선택할 수 있는데 AIMD, Slow Start가 있다.
 - AIMD의 경우 1 Frame을 보내면 Fps가 1 증가하고, Client가 resend를 요청하면 Fps를 반으로 한다. 단 최저값 이하로는 내려가지 않는다.
 - Slow Start의 경우 threshold에 도달하지 않으면 1 Frame을 보내면 Fps가 2배로 증가하고, threshold에 도달하면 1 Frame을 보내면 Fps가 1 증가한다.
@@ -107,7 +110,7 @@ Project Subject: **Reliability & Congestion Control Streaming**
   seqN 보다 3 낮지 않으면 Fps를 최저값으로 변경하고 끝낸다.
   slowstart가 아니라면, threshold를 줄이고 Fps를 최저값으로 변경한다.
 
-### 6) Main Function & Network Topology 이원규, 강남구
+### 6) Main Function & Network Topology 
 #### CMD Arguments 설명
 ##### 1. Arguments for  Streamer
 - PacketSize : 패킷 사이즈
@@ -333,11 +336,6 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171275488-9f8513f6-610f-4a0e-acea-fd1912ee54ac.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171275522-f8715714-5ea5-4e5d-80fc-98ef3706650c.png" width="250" height="250"/>
 </p>	
-
-
-### 4) Video Link 장지호
-최종 발표 비디오
-
 
 <br>
 
