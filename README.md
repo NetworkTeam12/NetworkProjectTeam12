@@ -185,11 +185,11 @@ ns-3.29$ ./waf --run scratch/topology1_p2p_pair
 ns-3.29$ ./waf --run scratch/topology2_wifi
 ns-3.29$ ./waf --run scratch/topology3_Y
 ns-3.29$ ./waf --run scratch/topology4_csma
-	
 ```
 
 
 ### 3) Result 이원규 강남구 
+	
 ### Topol1 - p2p
 ***
 ### 1. Sequence number & Resend count test (Flow1: seq num, Flow2: resend count)
@@ -266,6 +266,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171259726-a226b40c-43a3-439a-99f4-16f191a883a9.png" width="250" height="250"/>
 </p>
 	
+	
 ### Topology2 - WIFI (Flow1 : fps)
 ***
 ##### base parameter: fps = 30, packetSize = 100, packetNip = 100, mode = 0, thresHold = 200, bufferSize = 40
@@ -295,6 +296,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 </p>	
 
 
+	
 ### Topology3 - Y (Flow1 : fps)
 ***
 > #### udp 1-0, 0-1, 1-1 (no loss)
@@ -317,6 +319,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171266021-50a20e1e-c262-445d-b247-0768ab236386.png" width="250" height="250"/>
 </p>	
 
+	
 ### Topology4 - CSMA (Flow1 : fps)
 ***
 > #### tcp 1-1, udp 1-1 (no loss)
