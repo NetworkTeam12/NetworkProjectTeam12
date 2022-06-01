@@ -198,7 +198,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 ### 1. Sequence number & Resend count test (Flow1: seq num, Flow2: resend count)
 #### base parameter: packet size = 30, packet nip = 30, mode 0, buffer size = 40 
 
-> #### packet nip = 10, 30, 100
+> #### packet nip = 10, 30, 100 => nip 30 case 확인 후 삭제 필요
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171214248-19eda640-75c5-41e4-b832-dec8ad18bbdd.png" width="250" height="250"/>
