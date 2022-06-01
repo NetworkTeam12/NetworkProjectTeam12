@@ -190,7 +190,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 
 
 ### 3) Result 이원규 강남구 
-### sequence number & resend count test(Flow1: seq num, Flow2: resend count)
+### Sequence number & Resend count test (Flow1: seq num, Flow2: resend count)
 #### base parameter: packet size = 30, packet nip = 30, mode 0, buffer size = 40 
 
 > #### packet nip = 10, 30, 100
@@ -225,7 +225,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171218804-2ae563fb-6a32-4129-8667-ecca46f75968.png" width="250" height="250"/>
 </p>
 	
-### FPS test
+### FPS test (Flow1: fps)
 #### base parameter: packetSize = 100, packetNip = 100, thresHold = 200, bufferSize = 40
 	
 > #### mode 0 fps 10, 20, 30
@@ -255,7 +255,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
 </p>
 	
-### Retry 
+### Retry (Flow1: fps)
 #### base parameter: fps = 30 packetSize = 100, packetNip = 100, mode = 1, thresHold = 200, bufferSize = 40	
 > #### no loss, loss 0.1, 0.3
 <p float="left">
@@ -265,34 +265,27 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 </p>
 	
 ## Topology2 ( WIFI )
-##### base( 	uint32_t fps = 30; 
-	uint32_t packetSize = 100; 
-	uint32_t packetNip = 100; 
-	bool lossEnable = false;
-	double lossRate = 10;	 
-	uint32_t mode = 0; 	
-	uint32_t thresHold = 200; 
-	uint32_t bufferSize = 40; )<br>
-	loss 0.1 mode 0
+##### base parameter: fps = 30, packetSize = 100, packetNip = 100, mode = 0, thresHold = 200, bufferSize = 40
+> #### no loss, loss 0.1
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171256552-f8a202aa-3b49-4bff-ad97-c4c829fd53b3.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
 </p>
 	
-##### loss 0.1, 0.3, 0.5 (mode 1)
+> #### loss 0.1, 0.3, 0.5 (mode 1)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171255557-f8f2697e-c239-4651-aa6b-804e798e88db.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171255704-944b301a-c8fd-4491-b188-f16b0f3c827b.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171255829-6a3c5368-f724-4e5c-902a-1bbb5066be61.png" width="250" height="250"/>
 </p>	
 	
-##### loss 0.3 mode 1 threshold 100, 200
+> #### threshold 100, 200 (loss 0.3 mode 1)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171255955-e94b5c79-5351-4982-af8e-329963c0be2f.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171255704-944b301a-c8fd-4491-b188-f16b0f3c827b.png" width="250" height="250"/>
 </p>	
 	
-##### loss 0.5 mode 1 threshold 200 bufsize 20, 40
+> #### bufsize 20, 40 (loss 0.5 mode 1 threshold 200)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171256199-d67b2cfe-0b01-423f-914b-b9fd28452238.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171255829-6a3c5368-f724-4e5c-902a-1bbb5066be61.png" width="250" height="250"/>
@@ -300,34 +293,34 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 
 
 ## Topology3 ( Y )
-##### udp 1-0, 0-1, 1-1 (no loss)
+> #### udp 1-0, 0-1, 1-1 (no loss)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171266111-f1426a26-98ed-4edb-9450-dcbc71a6a807.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171266095-6bb01e6e-4618-4d42-9c2e-899857389b7b.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171266138-3801fa2c-5f11-4d51-98af-2aef4749a5d0.png" width="250" height="250"/>
 </p>
 	
-##### udp 1-0, 0-1, 1-1 (loss 0.3)
+> #### udp 1-0, 0-1, 1-1 (loss 0.3)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171266381-a1a63406-c509-4707-9487-5fbbfdad187a.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171266407-267bdfec-a6f6-4d3b-8374-b3cf010ba7cf.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171266436-39077678-af76-42e0-aea4-008464779105.png" width="250" height="250"/>
 </p>	
 
-##### tcp 1-0/ no loss, loss 0.3
+> #### no loss, loss 0.3 (tcp 1-0)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171265994-54ca724c-c716-45e6-b667-8dfd57af7f47.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171266021-50a20e1e-c262-445d-b247-0768ab236386.png" width="250" height="250"/>
 </p>	
 
 ## Topology4 ( CSMA )
-##### tcp 1-1, udp 1-1/ no loss
+> #### tcp 1-1, udp 1-1 (no loss)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171275440-2e24ffd0-143d-4efd-829a-7a9e878b98e9.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171275461-260d2fbb-f260-484f-9062-fc3b29637966.png" width="250" height="250"/>
 </p>	
 
-##### tcp 1-1, udp 1-1/ loss 0.3
+> #### tcp 1-1, udp 1-1 (loss 0.3)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171275488-9f8513f6-610f-4a0e-acea-fd1912ee54ac.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171275522-f8715714-5ea5-4e5d-80fc-98ef3706650c.png" width="250" height="250"/>
