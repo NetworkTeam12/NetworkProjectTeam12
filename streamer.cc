@@ -221,6 +221,7 @@ Streamer::ReSend (uint32_t seqN)
 
 void
 Streamer::Flowcontrol(uint32_t drop, uint32_t seqN){
+  NS_LOG_DEBUG ("1\t" << Simulator::Now().GetSeconds() << "\t" <<  m_fps );
   if(m_mode == 0){ // AIMD
     if(drop == 1){
       m_fps = m_fps / 2;

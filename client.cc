@@ -161,6 +161,7 @@ Client::HandleRead (Ptr<Socket> socket)
 		
 		uint32_t seqN = seqTs.GetSeq();
 		m_frameN = seqN/m_packetNIP;
+		// NS_LOG_DEBUG ("1\t" << Simulator::Now().GetSeconds() << "\t" <<  seqN );
 		NS_LOG_INFO ("At time " << Simulator::Now ().As (Time::S) << " Client received packet from " << InetSocketAddress::ConvertFrom (from).GetIpv4 () << " port " << InetSocketAddress::ConvertFrom (from).GetPort () << " frame : " << m_frameN << " seq : " << seqN );
 		PutFrameBuffer(m_frameN, seqN, from, socket);
 	}
@@ -214,6 +215,7 @@ Client::SendCheck(Address from, Ptr<Socket> socket)
 			m_frameBuffer[m_sendN].m_packets[i] = 2;
 			m_frameBuffer[m_sendN].m_send[count] = i;
 			count ++;
+			NS_LOG_DEBUG ("2\t" <<Simulator::Now().GetSeconds() << "\t" <<  count );
 		}
 	}
 	m_sendN++;
