@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     uint32_t fps = 30;         // 30
     uint32_t packetSize = 100; // 100
     uint32_t packetNip = 100;  // 100
-    bool lossEnable = true;   // false
+    bool lossEnable = true;   // true
     double lossRate = 0.01;    // 0.01
     uint32_t mode = 0;         // 0
     uint32_t thresHold = 200;  // 200
