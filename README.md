@@ -181,7 +181,11 @@ docker pull skarn2158/netproj-team12:base
 ns-3.29$ ./waf clean
 ns-3.29$ ./waf configure --build-profile=debug
 ns-3.29$ ./waf
-ns-3.29$ ./waf --run scratch/main
+ns-3.29$ ./waf --run scratch/topology1_p2p_pair
+ns-3.29$ ./waf --run scratch/topology2_wifi
+ns-3.29$ ./waf --run scratch/topology3_Y
+ns-3.29$ ./waf --run scratch/topology4_csma
+	
 ```
 
 
