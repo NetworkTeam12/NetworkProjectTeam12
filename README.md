@@ -174,8 +174,8 @@ docker pull skarn2158/netproj-team12:base
 - /scratch/ : topology main files
 
 - /src/application/wscript 에서
-- module.source = [ 'model/client.cc', 'model/streamer.cc', 'helper/helper.cc'] 추가
-- headers.source = [ 'model/client.h', 'model/streamer.h', 'helper/helper.h'] 추가
+- module.source = [ 'model/client.cc', 'model/streamer.cc', 'helper/helper.cc' ] 추가
+- headers.source = [ 'model/client.h', 'model/streamer.h', 'helper/helper.h' ] 추가
 
 ```
 ns-3.29$ ./waf clean
@@ -191,7 +191,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 
 ### 3) Result 이원규 강남구 
 ### sequence number & resend count test(Flow1: seq num, Flow2: resend count)
-base parameter: packet size = 30, packet nip = 30, mode 0, buffer size = 40 
+#### base parameter: packet size = 30, packet nip = 30, mode 0, buffer size = 40 
 
 > #### packet nip = 10, 30, 100
 <p float="left">
@@ -226,17 +226,9 @@ base parameter: packet size = 30, packet nip = 30, mode 0, buffer size = 40
 </p>
 	
 ### FPS test
-#### parameter(삭제예정)
-uint32_t fps = 30; 			
-uint32_t packetSize = 100; 
-uint32_t packetNip = 100; 
-bool lossEnable = true;	
-double lossRate = 0.01;	 	
-uint32_t mode = 1; 		
-uint32_t thresHold = 200; 	
-uint32_t bufferSize = 40; 	
+#### base parameter: packetSize = 100, packetNip = 100, thresHold = 200, bufferSize = 40
 	
-##### mode 0 fps 10, 20, 30
+> #### mode 0 fps 10, 20, 30
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171199940-ed9563a1-4555-43cd-abb4-e5cab3accaa2.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171200357-6f95a087-7423-4fdf-9f94-5fbc48f7f177.png" width="250" height="250"/>
@@ -244,37 +236,28 @@ uint32_t bufferSize = 40;
 </p>
 <br>
 	
-##### mode 1 fps 10, 20, 30
+> #### mode 1 fps 10, 20, 30
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171201270-62bf41a3-2f62-4042-9f7d-2b4e822d13d1.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171201428-f741b8e6-01b3-4038-a8de-cea969bcbc38.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="250" height="250"/>
 </p>
 
-##### loss 0.01, 0.1 (mode 1 fps 30)
+> #### loss 0.01, 0.1 (mode 1 fps 30)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171201633-1be494b5-5f84-4646-8709-ed0e4e3963c9.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171209642-813d9980-f512-451a-b686-147270d9084a.png" width="250" height="250"/>
 </p>
 	
-##### buf 40, buf 100 (mode 1 fps 30)
+> #### buf 40, buf 100 (mode 1 fps 30)
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171215417-e63c0fd3-758f-43d1-b109-3d99e1512f36.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171209812-fe0a8f59-0a1e-4818-90cb-d9979b3a0491.png" width="250" height="250"/>
 </p>
 	
-#### 	retry 
-	base >>
-	uint32_t fps = 30; 			//30
-	uint32_t packetSize = 100; 	//30
-	uint32_t packetNip = 100; 	//30
-	bool lossEnable = false;	//false
-	double lossRate = 30;	 	//0.01
-	uint32_t mode = 1; 			//0
-	uint32_t thresHold = 200; 	//200
-	uint32_t bufferSize = 40; 	//40	
-	
-	no loss, loss 0.1, 0.3
+### Retry 
+#### base parameter: fps = 30 packetSize = 100, packetNip = 100, mode = 1, thresHold = 200, bufferSize = 40	
+> #### no loss, loss 0.1, 0.3
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/28288186/171259482-bb9c2ac1-bfe3-4435-8980-22fdba7c4c3c.png" width="250" height="250"/>
 	<img src="https://user-images.githubusercontent.com/28288186/171259498-48e87e44-fa9d-4a2f-9477-e9e503776e0c.png" width="250" height="250"/>
