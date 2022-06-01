@@ -171,7 +171,7 @@ Project Subject: **Reliability & Congestion Control Streaming**
 #### docker pull command
 	docker pull skarn2158/netproj-team12:base
 
-### 2) Running the App 이원규 강남구 
+### 2) Running the App  
 - /src/applications/model/ : client.cc, client.h, streamer.cc streamer.h
 - /src/applictions/helper/ : helper.cc, helper.h
 - /scratch/ : topology main files
@@ -191,7 +191,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 ```
 
 
-### 3) Result 이원규 강남구 
+### 3) Result  
 	
 ### Topol1 - p2p
 ***
