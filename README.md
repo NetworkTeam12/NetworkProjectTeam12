@@ -1,4 +1,14 @@
 # NetworkProjectTeam12
+### About Contribution
+- 저희 조는 4개 팀로 나눠서 3팀은 소스코드를, 1팀은 자료 제작 및 발표를 맡았습니다.
+- 그에 따라 insight에 contribution이 4개 밖에 보이지 않는 점을
+- 평가 시 참고해주시면 감사하겠습니다. 
+
+### About Topic
+- Assignment 4와 비슷하다고 느끼실 수 있으실텐데, 
+- Assignment 4가 공지되기 전부터 realiable을 구현하고자 한 점을 history 통해 확인하실 수 있습니다.
+- Assignment 4와 차이점 : realiability 뿐만 아니라 Streaming Application + Congestion control 구현
+
 
 ## 1. Introduction
 Project Subject: **Reliability & Congestion Control Streaming**
@@ -342,11 +352,6 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 <br>
 
 ## 5. Team Members & Roles
-### 0) Contribute
-- 저희 조는 4개 팀로 나눠서 3팀은 소스코드를, 1팀은 자료 제작 및 발표를 맡았습니다.
-- 그에 따라 insight에 contribution이 4개 밖에 보이지 않는 점을
-- 평가 시 참고해주시면 감사하겠습니다. 
-	
 ### 1) SubTeam 1.
 - Streamer.h, Streamer.cc, Client.h, Client.cc, README.md
 - 조하영 : Streaming Code의 전체적인 틀, Reliability of UDP, README.md 작성, 결과 해석
