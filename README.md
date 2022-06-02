@@ -194,7 +194,7 @@ Project Subject: **Reliability & Congestion Control Streaming**
 def build(bld):
   ...
   
-  module.source = [
+  obj.source = [
       ... 
       'model/client.cc',
       'model/streamer.cc',
