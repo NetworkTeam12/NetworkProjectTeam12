@@ -6,7 +6,7 @@
 
 ### 평가) About Topic
 - Assignment 4와 비슷하다고 느끼실 수 있으실텐데, 
-- Assignment 4가 공지되기 전 realiable을 구현한 점을 history 통해 확인하실 수 있습니다.
+- Assignment 4가 공지되기 전, realiable을 구현한 점을 history 통해 확인하실 수 있습니다.
 - Assignment 4와 차이점 : realiability 뿐만 아니라 Streaming Application + Congestion control 구현
 
 <br>
