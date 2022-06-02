@@ -210,7 +210,7 @@ def build(bld):
       'helper/helper.h'
       ]
 ```
-	
+- 아래와 같이 configure & build & running 	
 ```
 ns-3.29$ ./waf clean
 ns-3.29$ ./waf configure --build-profile=debug
