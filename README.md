@@ -343,7 +343,7 @@ ns-3.29$ ./waf --run scratch/topology4_csma
 
 ## 5. Team Members & Roles
 ### 0) Contribute
-- 저희 조는 팀을 4개로 나눠서 3팀은 소스코드를, 1팀은 자료 제작 및 발표를 맡았습니다.
+- 저희 조는 4개 팀로 나눠서 3팀은 소스코드를, 1팀은 자료 제작 및 발표를 맡았습니다.
 - 그에 따라 insight에 contribution이 4개 밖에 보이지 않는 점을
 - 평가 시 참고해주시면 감사하겠습니다. 
 	
