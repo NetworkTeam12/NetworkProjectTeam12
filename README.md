@@ -189,10 +189,28 @@ Project Subject: **Reliability & Congestion Control Streaming**
 - /src/applictions/helper/ : helper.cc, helper.h
 - /scratch/ : topology main files
 
-- /src/application/wscript 에서
-- module.source = [ 'model/client.cc', 'model/streamer.cc', 'helper/helper.cc' ] 추가
-- headers.source = [ 'model/client.h', 'model/streamer.h', 'helper/helper.h' ] 추가
-
+- /src/application/wscript 파일을 아래와 같이 수정
+```
+def build(bld):
+  ...
+  
+  module.source = [
+      ... 
+      'model/client.cc',
+      'model/streamer.cc',
+      'helper/helper.cc'
+      ]
+  
+  ... 
+  
+  headers.source = [
+      ...
+      'model/client.h',
+      'model/streamer.h',
+      'helper/helper.h'
+      ]
+```
+	
 ```
 ns-3.29$ ./waf clean
 ns-3.29$ ./waf configure --build-profile=debug
