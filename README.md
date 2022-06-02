@@ -1,10 +1,10 @@
 # NetworkProjectTeam12
-### About Contribution
+### 평가) About Contribution
 - 저희 조는 4개 팀로 나눠서 3팀은 소스코드를, 1팀은 자료 제작 및 발표를 맡았습니다.
 - 그에 따라 insight에 contribution이 4개 밖에 보이지 않는 점을
 - 평가 시 참고해주시면 감사하겠습니다. 
 
-### About Topic
+### 평가) About Topic
 - Assignment 4와 비슷하다고 느끼실 수 있으실텐데, 
 - Assignment 4가 공지되기 전부터 realiable을 구현하고자 한 점을 history 통해 확인하실 수 있습니다.
 - Assignment 4와 차이점 : realiability 뿐만 아니라 Streaming Application + Congestion control 구현
